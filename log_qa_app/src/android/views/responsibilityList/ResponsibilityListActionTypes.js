@@ -1,0 +1,9 @@
+export const get_ResponsibilityList_success= 'get_ResponsibilityList_success'
+export const get_ResponsibilityList_waiting = 'get_ResponsibilityList_waiting'
+export const get_ResponsibilityList_failed = 'get_ResponsibilityList_failed'
+export const get_ResponsibilityList_error = 'get_ResponsibilityList_error'
+
+export const get_ResponsibilityListMore_success= 'get_ResponsibilityListMore_success'
+export const get_ResponsibilityListMore_waiting = 'get_ResponsibilityListMore_waiting'
+export const get_ResponsibilityListMore_failed = 'get_ResponsibilityListMore_failed'
+export const get_ResponsibilityListMore_error = 'get_ResponsibilityListMore_error'
