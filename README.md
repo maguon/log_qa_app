@@ -54,4 +54,4 @@ dependencies {
 Execution failed for task ':react-native-camera:processReleaseResources'.
 > com.android.ide.common.process.ProcessException: Failed to execute aapt
 
-解决：   targetSdkVersion 与 compileSdkVersion 统一
+解决：   targetSdkVersion 与 compileSdkVersion 统 
