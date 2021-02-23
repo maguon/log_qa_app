@@ -16,7 +16,7 @@ const UpdatePassword = props => {
     const { handleSubmit } = props
     return (
         <Container>
-            <Content showsVerticalScrollIndicator={false}>
+            <Content showsVerticalScrollIndicator={false} style={globalStyles.marginTop}>
                 <Form style={styles.list} >
                     <Field name='oldPassword' label='原密码' secureTextEntry={true} isRequired={true} component={TextBox} />
                     <Field name='newPassword' label='新密码' secureTextEntry={true} isRequired={true} component={TextBox} />

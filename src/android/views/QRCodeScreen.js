@@ -6,9 +6,10 @@ import {
     ToastAndroid,
     Vibration
 } from 'react-native'
-import BarcodeScanner from 'react-native-barcodescanner'
+// import BarcodeScanner from 'react-native-barcodescanner'
+// import BarcodeScanner from "@paraboly/react-native-barcode-scanner"
 import { Actions } from 'react-native-router-flux'
-import Orientation from 'react-native-orientation'
+import Orientation from '@gergof/react-native-orientation'
 
 export default class QRCodeScreen extends Component {
     constructor(props) {
@@ -31,20 +32,20 @@ export default class QRCodeScreen extends Component {
         Orientation.lockToPortrait()
     }
 
-    barcodeReceived(e) {
-        Vibration.vibrate()
-        this.props.barcodeReceived(e)
-        // this.setState({
-        //     barcode: e.data,
-        //     text: `${e.data} (${e.type})`,
-        //     type: e.type,
-        // });
-    }
+    // barcodeReceived(e) {
+    //     Vibration.vibrate()
+    //     this.props.barcodeReceived(e)
+    //     this.setState({
+    //         barcode: e.data,
+    //         text: `${e.data} (${e.type})`,
+    //         type: e.type,
+    //     });
+    // }
 
     render() {
         return (
             <View style={styles.container}>
-                <BarcodeScanner
+                {/* <BarcodeScanner
                     viewFinderHeight={80}
                     viewFinderWidth={450}
                     onBarCodeRead={this.barcodeReceived.bind(this)}
@@ -52,10 +53,11 @@ export default class QRCodeScreen extends Component {
                     torchMode={this.state.torchMode}
                     cameraType={this.state.cameraType}
 
-                />
-                {/* <View style={styles.statusBar}>
+                />  */}
+              
+              <View style={styles.statusBar}>
                     <Text style={styles.statusBarText}>{this.state.text}</Text>
-                </View> */}
+                </View> 
             </View>
         );
     }

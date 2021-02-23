@@ -132,7 +132,7 @@ const ImageEditorForDemage = props => {
         <Container >
             <FlatList
                 style={styles.flatList}
-                keyExtractor={(item, index) => index}
+                keyExtractor={(item, index) => `${index}`}
                 data={demageImageList.length > 0 || videoUrl ? dataList : []}
                 numColumns={2}
                 ListEmptyComponent={() => renderListEmpty({ parent, uploadDamageImageWaiting, uploadVideoForDamage, uploadVideoForDamageWaiting, uploadDamageImage, damageId: id })}

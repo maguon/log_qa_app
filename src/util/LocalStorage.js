@@ -1,19 +1,61 @@
-import Storage from 'react-native-storage'
-import { AsyncStorage } from 'react-native'
+import  AsyncStorage from '@react-native-async-storage/async-storage'
+const setItemValue = async (key,value) => {
+    try {
+        await AsyncStorage.setItem(key, value)
+    } catch(e) {
 
-const LocalStorage = new Storage({
-    // 最大容量，默认值1000条数据循环存储
-    size: 1000,
-    // 存储引擎：对于RN使用AsyncStorage，对于web使用window.localStorage
-    // 如果不指定则数据只会保存在内存中，重启后即丢失
-    storageBackend: AsyncStorage,
+    }
+}
 
-    // 数据过期时间，默认一整天（1000 * 3600 * 24 毫秒），设为null则永不过期
-    defaultExpires: 1000 * 3600 * 24 * 30,
+const setItemObject = async (key,obj) => {
+    try {
+        const jsonValue = JSON.stringify(obj);
+        await AsyncStorage.setItem(key, jsonValue);
+    } catch(e) {
 
-    // 读写时在内存中缓存数据。默认启用。
-    enableCache: true
-})
+    }
+}
+const getItemValue = async (key) => {
+    try {
+        return await AsyncStorage.getItem(key);
+    } catch(e) {
+        return null;
+    }
+}
 
-export default LocalStorage
+const getItemObject = async (key) => {
+    try {
+        const jsonValue = await AsyncStorage.getItem(key);
+        return jsonValue != null ? JSON.parse(jsonValue) : null;
+    } catch(e) {
+        return null;
+    }
+}
+const getAllKeys = async () => {
+    let keys = []
+    try {
+        keys = await AsyncStorage.getAllKeys();
+    } catch(e) {
+
+    }
+    console.log(keys);
+    return keys;
+}
+const removeItem = async (key) => {
+    try {
+        await AsyncStorage.removeItem(key);
+    } catch(e) {
+    }
+}
+
+const mergeItemObject= async (key,obj) => {
+    try {
+        await AsyncStorage.mergeItem(key,JSON.stringify(obj));
+    } catch(e) {
+    }
+}
+
+export {
+    getItemValue,getItemObject,getAllKeys,removeItem,setItemValue,setItemObject
+}
 

@@ -46,7 +46,7 @@ const SelectDriver = props => {
                 <Label style={globalStyles.midText}>货车司机：</Label>
                 <View style={styles.itemSelect}>
                     <Label style={globalStyles.midText}>{value.drive_name ? `${value.drive_name}` : ''}</Label>
-                    <Icon name='md-arrow-dropdown' style={globalStyles.formIcon} />
+                    <Icon name='md-caret-down-sharp' style={globalStyles.formIcon} />
                 </View>
             </View>
             {error && <Text style={[globalStyles.errorText, { marginTop: 10 }]}>* {error}</Text>}

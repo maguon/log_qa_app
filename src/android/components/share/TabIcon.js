@@ -1,34 +1,20 @@
-import React, { PropTypes } from 'react'
-import { View, Text } from 'react-native'
-import { Icon, Button } from 'native-base'
-import { Actions } from 'react-native-router-flux'
-import {
-  StyleSheet
-} from 'react-native'
-import globalStyles from '../../GlobalStyles'
+import React, {Component} from 'react'
+import Icon from 'react-native-vector-icons/Ionicons'
 
 
-const propTypes = {
-  selected: PropTypes.bool,
-  online: PropTypes.string,
-  outline: PropTypes.string
+class TabIcon extends Component {
+    constructor(props) {
+        super(props)
+    }
+
+
+    render() {
+        return (
+            <Icon name={this.props.focused ? this.props.online : this.props.outline}
+                  style={{color: this.props.focused ? '#36759e' : '#999'}} size={this.props.size}/>
+        )
+    }
 }
-
-const TabIcon = props => {
-  return (
-    <Icon
-      name={props.selected ? props.online : props.outline}
-      style={props.selected ? globalStyles.styleColor : styles.iconOutline} />
-  )
-}
-
-const styles = StyleSheet.create({
-  iconOutline: {
-    color: '#999'
-  }
-})
-
-TabIcon.propTypes = propTypes
 
 export default TabIcon
 

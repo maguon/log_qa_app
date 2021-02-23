@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { Header, Title, Button, Icon, Right, Left, Body, Label, Item, Input, Text } from 'native-base'
-import { View, StatusBar, StyleSheet, TextInput, TouchableOpacity, TouchableHighlight, Modal, InteractionManager, Dimensions } from 'react-native'
+import { Header,  Button, Icon,  Left, Body, Text } from 'native-base'
+import { View, StatusBar, StyleSheet,  TouchableHighlight, Modal, InteractionManager, TouchableOpacity,Dimensions } from 'react-native'
 import * as routerDirection from '../../../../util/RouterDirection'
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+// import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import globalStyles, { styleColor } from '../../../GlobalStyles'
 import QRCodeScreen from '../../../views/QRCodeScreen'
 import * as RouterDirection from '../../../../util/RouterDirection'
@@ -24,7 +24,7 @@ class SearchBar extends Component {
     barcodeReceived(e) {
         this.setState({ modalVisible: false })
         InteractionManager.runAfterInteractions(() => {
-            RouterDirection.searchCar(this.props.parent)({ initParam: { vinCode: e.data } })
+            RouterDirection.searchCar(this.props.initialRouteName)({ initParam: { vinCode: e.data } })
             InteractionManager.runAfterInteractions(() => {
                 e.data.length > 5 && this.props.getCarList(e.data)
             })
@@ -32,7 +32,7 @@ class SearchBar extends Component {
     }
 
     render() {
-        const { parent } = this.props
+        const { initialRouteName } = this.props
         return (
             <View style={[styles.container, { width: width }]}>
                 <StatusBar hidden={false} />
@@ -41,13 +41,13 @@ class SearchBar extends Component {
                     style={globalStyles.styleBackgroundColor}>
                     <Left style={styles.left}>
                         <Button small transparent onPress={() => this.setState({ modalVisible: true })}>
-                            <Icon name="ios-qr-scanner" style={styles.leftIcon} />
+                            <Icon name="scan" style={styles.leftIcon} />
                         </Button>
                     </Left>
                     <Body style={styles.body}>
-                        <TouchableHighlight
+                        <TouchableOpacity
                             underlayColor={'rgba(255, 255, 255, 0)'}
-                            onPress={routerDirection.searchCar(parent)}
+                            onPress={()=>{routerDirection.searchCar(initialRouteName)}}
                             style={styles.bodyTouch}>
                             <View style={styles.bodyTouchChild}>
                                 <View style={styles.input} >
@@ -55,7 +55,7 @@ class SearchBar extends Component {
                                 </View>
                                 <Icon name="ios-search" style={[globalStyles.textColor, styles.inputIcon]} />
                             </View>
-                        </TouchableHighlight>
+                        </TouchableOpacity>
                     </Body>
                 </Header>
                 <Modal

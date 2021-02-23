@@ -48,7 +48,7 @@ const SelectDriver = props => {
                 <Label style={globalStyles.midText}>货车司机：</Label>
                 <View style={styles.itemSelect}>
                     <Label style={globalStyles.midText}>{value.drive_name ? `${value.drive_name}` : ''}{value.mobile ? `(${value.mobile})` : ''}</Label>
-                    <Icon name='md-arrow-dropdown' style={globalStyles.formIcon} />
+                    <Icon name='md-caret-down-sharp' style={globalStyles.formIcon} />
                 </View>
             </View>
 
@@ -59,10 +59,11 @@ const SelectDriver = props => {
 
 
 const ApplyDamage = props => {
-    const { getSelectDriverList, getSelectDriverListWaiting, getCarModelList, getCarModelListWaiting, parent, initParam: { make_id } } = props
+    const { getSelectDriverList, getSelectDriverListWaiting, getCarModelList, getCarModelListWaiting, parent, initParam: {initParam:{make_id}  } } = props
+   console.log("props",props)
     return (
         <Container>
-            <Content>
+            <Content style={globalStyles.marginTop}>
                 <Field
                     name='carModel'
                     label='指令编号'
@@ -75,8 +76,6 @@ const ApplyDamage = props => {
                                 onChange({ id, value: model_name, item: param })
                             }
                         })
-
-
                         InteractionManager.runAfterInteractions(() => getCarModelList({ make_id }))
                     }}
                 />
@@ -162,6 +161,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
         dispatch(applyDamageSubmitAction.createDamage(parent))
     }
 })
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(
     reduxForm({

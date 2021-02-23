@@ -5,7 +5,10 @@ import { fontSizeCoeff } from '../util/util'
 
 const globalStyles = StyleSheet.create({
     container: {
-        backgroundColor: '#F0EFF5'
+        backgroundColor: '#F0EFF5',   
+    },
+    marginTop:{
+        marginTop:56
     },
     styleColor: {
         color: '#36759e'

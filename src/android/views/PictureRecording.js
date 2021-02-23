@@ -8,30 +8,30 @@ import {
     Modal,
     ActivityIndicator
 } from 'react-native'
-import Camera from 'react-native-camera'
+// import Camera from 'react-native-camera'
 import { Icon } from 'native-base'
 import moment from 'moment'
-import { ProcessingManager } from 'react-native-video-processing'
+// import { ProcessingManager } from 'react-native-video-processing'
 
 export default class CameraComponent extends Component {
     constructor(props) {
         super(props);
         this.camera = null
         this.state = {
-            camera: {
-                aspect: Camera.constants.Aspect.fill,
-                captureTarget: Camera.constants.CaptureTarget.cameraRoll,
-                type: Camera.constants.Type.front,
-                orientation: Camera.constants.Orientation.auto,
-                flashMode: Camera.constants.FlashMode.auto,
-            },
-            isRecording: false,
-            isRecordingSuccess: false,
-            currentSec: 0,
-            maxSec: 15,
-            videoPatch: '',
-            isCompressing: false,
-            cameraType: Camera.constants.Type.back
+            // camera: {
+            //     aspect: Camera.constants.Aspect.fill,
+            //     captureTarget: Camera.constants.CaptureTarget.cameraRoll,
+            //     type: Camera.constants.Type.front,
+            //     orientation: Camera.constants.Orientation.auto,
+            //     flashMode: Camera.constants.FlashMode.auto,
+            // },
+            // isRecording: false,
+            // isRecordingSuccess: false,
+            // currentSec: 0,
+            // maxSec: 15,
+            // videoPatch: '',
+            // isCompressing: false,
+            // cameraType: Camera.constants.Type.back
         };
         this.startRecording = this.startRecording.bind(this)
         this.stopRecording = this.stopRecording.bind(this)
@@ -40,20 +40,20 @@ export default class CameraComponent extends Component {
     }
 
     compressVideo() {
-        this.setState({ isCompressing: true })
-        const options = {
-            width: 270,
-            height: 480,
-            bitrateMultiplier: 12,
-            minimumBitrate: 300000,
-            removeAudio: false
-        };
-        // console.log('this.props',this.props)
-        ProcessingManager.compress(this.state.videoPatch, options) // like VideoPlayer compress options
-            .then((data) => {
-                this.props.uploadVideo(data)
-                this.setState({ isCompressing: false })
-            })
+        // this.setState({ isCompressing: true })
+        // const options = {
+        //     width: 270,
+        //     height: 480,
+        //     bitrateMultiplier: 12,
+        //     minimumBitrate: 300000,
+        //     removeAudio: false
+        // };
+        // // console.log('this.props',this.props)
+        // ProcessingManager.compress(this.state.videoPatch, options) // like VideoPlayer compress options
+        //     .then((data) => {
+        //         this.props.uploadVideo(data)
+        //         this.setState({ isCompressing: false })
+        //     })
     }
 
     startTiming = () => {
@@ -72,20 +72,20 @@ export default class CameraComponent extends Component {
     }
 
     startRecording() {
-        if (this.camera) {
-            this.startTiming()
-            this.camera.capture({ mode: Camera.constants.CaptureMode.video, captureQuality: Camera.constants.CaptureQuality.low })
-                .then((data) => {
-                    const { path } = data
-                    this.setState({ isRecordingSuccess: true, videoPatch: path })
-                })
-                .catch(err => console.error(err))
-            this.setState({
-                isRecording: true,
-                isRecordingSuccess: false,
-                currentSec: 0
-            })
-        }
+        // if (this.camera) {
+        //     this.startTiming()
+        //     this.camera.capture({ mode: Camera.constants.CaptureMode.video, captureQuality: Camera.constants.CaptureQuality.low })
+        //         .then((data) => {
+        //             const { path } = data
+        //             this.setState({ isRecordingSuccess: true, videoPatch: path })
+        //         })
+        //         .catch(err => console.error(err))
+        //     this.setState({
+        //         isRecording: true,
+        //         isRecordingSuccess: false,
+        //         currentSec: 0
+        //     })
+        // }
     }
 
     stopRecording() {
@@ -104,7 +104,7 @@ export default class CameraComponent extends Component {
                     animated
                     hidden
                 />
-                <Camera
+                {/* <Camera
                     ref={(cam) => {
                         this.camera = cam
                     }}
@@ -168,7 +168,7 @@ export default class CameraComponent extends Component {
                             <Text style={styles.modalText}>正在上传视频...</Text>
                         </View>
                     </View>
-                </Modal>
+                </Modal> */}
             </View>
         )
     }

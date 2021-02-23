@@ -59,7 +59,7 @@ class Setting extends Component {
         const { communicationSettingReducer: { data: {  file_host } } } = this.props
         return (
             <Container>
-                <Content style={globalStyles.container}>
+                <Content style={[globalStyles.container,globalStyles.marginTop]}>
                     <List style={styles.list}>
                         <Separator style={globalStyles.separator} />
                         <ListItem last onPress={Actions.personalCenter}>

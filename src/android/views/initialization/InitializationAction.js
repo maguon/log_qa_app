@@ -8,7 +8,7 @@ import * as communicationSettingActionTypes from '../communicationSetting/commun
 import * as loginActionTypes from '../login/LoginActionTypes'
 import { ObjectToUrl } from '../../../util/ObjectToUrl'
 import localStorageKey from '../../../util/LocalStorageKey'
-import localStorage from '../../../util/LocalStorage'
+import {getItemObject,setItemObject,removeItem} from '../../../util/LocalStorage'
 import requestHeaders from '../../../util/RequestHeaders'
 import * as android_app from '../../../android_app.json'
 import { sleep } from '../../../util/util'
@@ -36,7 +36,7 @@ export const initApp = (currentStep = 1, tryCount = 1, param = null) => (dispatc
     } else if (currentStep == 2) {
         //执行第二步
         //console.log(`========执行第${currentStep}步    第${tryCount}次尝试========`)
-        dispatch(loadLocalStorage(tryCount))
+        dispatch(loadLocalStorage())
     } else if (currentStep == 3) {
         //执行第三步
         //console.log(`========执行第${currentStep}步    第${tryCount}次尝试========`)
@@ -46,8 +46,9 @@ export const initApp = (currentStep = 1, tryCount = 1, param = null) => (dispatc
 
 
 export const getCommunicationSetting = () => async (dispatch) => {
+
     try {
-        const localStorageRes = await localStorage.load({ key: localStorageKey.SERVERADDRESS })
+        const localStorageRes = await getItemObject( localStorageKey.SERVERADDRESS )
         // console.log('localStorageRes', localStorageRes)
         const { base_host, file_host, record_host, host } = localStorageRes
         if (base_host && file_host && record_host && host) {
@@ -56,14 +57,12 @@ export const getCommunicationSetting = () => async (dispatch) => {
                     base_host, file_host, record_host, host
                 }
             })
-            dispatch(validateVersion())
-            
+            dispatch(validateVersion())            
         } else {
-            Actions.mainRoot()
+           Actions.loginBlock()
         }
-
     } catch (err) {
-        Actions.mainRoot()
+        Actions.loginBlock()
         console.log('err', err)
     }
 }
@@ -162,8 +161,8 @@ export const loadLocalStorage = () => async (dispatch) => {
         //         token: 'v4m1x9wFedXZ6S9rbV5Ax-9EAWY=9i39iMZK1a5578b3b728c1f8dbc87071b199c67f8b4ae35e233647cd1825977e83a8c812d194c41a71049edad8470b361d415a76'
         //     }
         // })
-        //localStorage.remove({ key: localStorageKey.USER })
-        const localStorageRes = await localStorage.load({ key: localStorageKey.USER })
+        // localStorage.remove({ key: localStorageKey.USER })
+        const localStorageRes = await getItemObject( localStorageKey.USER )
         if (localStorageRes.token && localStorageRes.uid) {
             dispatch({ type: initializationActionTypes.Load_LocalStorage_Success, payload: { step: currentStep } })
             dispatch(initApp(currentStep + 1, 1, {
@@ -180,7 +179,7 @@ export const loadLocalStorage = () => async (dispatch) => {
                 dispatch({ type: loginActionTypes.Set_UserInfo, payload: { user: {} } })
             }
             dispatch({ type: initializationActionTypes.Load_LocalStorage_Failed, payload: { step: currentStep } })
-            Actions.mainRoot()
+            Actions.loginBlock()
         }
     } catch (err) {
         // console.log(err)
@@ -188,17 +187,17 @@ export const loadLocalStorage = () => async (dispatch) => {
             dispatch({ type: initializationActionTypes.Load_LocalStorage_NotFoundError, payload: { step: currentStep } })
 
         } else {
-            localStorage.remove({ key: localStorageKey.USER })
+            removeItem(localStorageKey .USER)
             dispatch({ type: initializationActionTypes.Load_LocalStorage_Error, payload: { errorMsg: err.message, step: currentStep } })
         }
-        Actions.mainRoot()
+        Actions.loginBlock()
     }
 
 }
 
 //第三步:更换service-token ,如果更新成功将登陆数据放入userReducer
 export const validateToken = (tryCount = 1, param) => async (dispatch, getState) => {
-    let uniqueID = DeviceInfo.getUniqueID()
+    let uniqueID = DeviceInfo.getUniqueId()
     // console.log("uniqueID",uniqueID)
     const currentStep = 3
     try {
@@ -207,38 +206,38 @@ export const validateToken = (tryCount = 1, param) => async (dispatch, getState)
         // console.log('url', url)
         const res = await httpRequest.get(url)
         if (res.success) {
-
-            const userDeviceUrl = `${base_host}/user/${param.requiredParam.userId}/userDevice?${ObjectToUrl({
+            const userDeviceUrl = `${base_host}/user/${param.requiredParam.userId}/userDevice`
+         
+            const userDeviceRes = await httpRequest.post(userDeviceUrl,{
                 deviceToken:"",
                 version: android_app.version,
                 appType: android_app.type,
                 deviceType: 1,
                 deviceId: uniqueID
-            })}`
-            const userDeviceRes = await httpRequest.post(userDeviceUrl)
+            })
             if (userDeviceRes.success) {
-                // console.log('userDeviceRes', userDeviceRes)
+               console.log('userDeviceRes', userDeviceRes)
             }
-           
-
 
             const getUserInfoUrl = `${base_host}/user${ObjectToUrl({ userId: param.requiredParam.userId })}`
             const getUserInfoRes = await httpRequest.get(getUserInfoUrl)
             if (getUserInfoRes.success) {
+                // console.log('localStorageRes', getUserInfoRes)
                 const { uid, mobile, real_name, type, gender, avatar_image, status } = getUserInfoRes.result[0]
                 const user = {
                     uid, mobile, real_name, type, gender, avatar_image, status,
                     token: param.requiredParam.token,
                 }
                 //判断请求是否成功，如果成功，更新token
-                localStorage.save({ key: localStorageKey.USER, data: user })
+                await setItemObject( localStorageKey.USER,user )
                 requestHeaders.set('auth-token', res.result.accessToken)
                 requestHeaders.set('user-type', type)
                 requestHeaders.set('user-name', mobile)
                 dispatch({ type: loginActionTypes.Set_UserInfo, payload: { user } })
                 dispatch({ type: initializationActionTypes.validate_token_Success, payload: { step: currentStep } })
-                Actions.mainRoot()
+                Actions.main()
             } else {
+                console.log('localStorageRes5555', localStorageRes)
                 ToastAndroid.showWithGravity(`登陆失败：无法获取用户信息！`, ToastAndroid.CENTER, ToastAndroid.BOTTOM)
                 dispatch({ type: initializationActionTypes.validate_token_Failed, payload: { failedMsg: '无法获取用户信息！' } })
             }
@@ -246,7 +245,7 @@ export const validateToken = (tryCount = 1, param) => async (dispatch, getState)
         else {
             //判断请求是否成功，如果失败，跳转到登录页
             dispatch({ type: initializationActionTypes.validate_token_Failed, payload: { step: currentStep } })
-            Actions.mainRoot()
+            Actions.loginBlock()
         }
     } catch (err) {
         if (err.message == 'Network request failed') {
@@ -259,7 +258,7 @@ export const validateToken = (tryCount = 1, param) => async (dispatch, getState)
             }
         } else {
             dispatch({ type: initializationActionTypes.validate_token_Error, payload: { step: currentStep } })
-            Actions.mainRoot()
+            Actions.loginBlock()
         }
     }
 }

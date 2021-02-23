@@ -107,7 +107,7 @@ class CarSort extends Component {
             handleSubmit, getCarSortListWaiting, getCarSortList,cleanCarSortList
         } = this.props
         return (
-            <Container style={globalStyles.container}>
+            <Container style={[globalStyles.container,globalStyles.marginTop]}>
 
 
                 <Tabs
@@ -135,7 +135,7 @@ class CarSort extends Component {
                                     }}
                                     colors={[styleColor]}
                                 />}
-                                keyExtractor={(item, index) => index}
+                                keyExtractor={(item, index) => `${index}`}
                                 showsVerticalScrollIndicator={false}
                                 ListEmptyComponent={renderEmpty}
                                 onEndReachedThreshold={0.2}
@@ -167,7 +167,7 @@ class CarSort extends Component {
                                     }}
                                     colors={[styleColor]}
                                 />}
-                                keyExtractor={(item, index) => index}
+                                keyExtractor={(item, index) => `${index}`}
                                 showsVerticalScrollIndicator={false}
                                 ListEmptyComponent={renderEmptyIn}
                                 onEndReachedThreshold={0.2}
@@ -199,7 +199,7 @@ class CarSort extends Component {
                                     }}
                                     colors={[styleColor]}
                                 />}
-                                keyExtractor={(item, index) => index}
+                                keyExtractor={(item, index) => `${index}`}
                                 showsVerticalScrollIndicator={false}
                                 ListEmptyComponent={renderEmptyOut}
                                 onEndReachedThreshold={0.2}

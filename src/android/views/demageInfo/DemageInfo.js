@@ -23,7 +23,7 @@ const DemageInfo = props => {
         demageOpResultReducer: { getDemageOpResult },
         parent } = props
     return (
-        <Container style={globalStyles.listBackgroundColor}>
+        <Container style={[globalStyles.listBackgroundColor,globalStyles.marginTop]}>
             <Tabs>
                 <Tab
                     tabStyle={globalStyles.styleBackgroundColor}

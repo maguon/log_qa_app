@@ -7,7 +7,7 @@ import {
 } from 'react-native'
 import { Button, Icon } from 'native-base'
 import Swiper from 'react-native-swiper'
-import PhotoView from 'react-native-photo-view'
+import PhotoView from '@arlenwang/react-native-photo-view'
 import { Actions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 

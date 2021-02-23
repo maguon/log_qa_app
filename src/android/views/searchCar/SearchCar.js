@@ -10,7 +10,7 @@ import {
 } from 'react-native'
 import { getFormValues } from 'redux-form'
 import { connect } from 'react-redux'
-import { Thumbnail, Spinner } from 'native-base'
+import { Thumbnail, Spinner ,Content} from 'native-base'
 import globalStyles, { styleColor } from '../../GlobalStyles'
 import * as routerDirection from '../../../util/RouterDirection'
 import * as carDetailAction from '../../components/carInfo/carDetail/CarDetailAction'
@@ -18,7 +18,7 @@ import * as carInfoRecordAction from '../../components/carInfo/carInfoRecord/Car
 import * as searchCarAction from './SearchCarAction'
 
 const renderItem = props => {
-    const { item: { vin, id }, index, getCarInfoRecordWaiting, getCarDetailWaiting, getCarDetail, getCarInfoRecord, parent } = props
+    const { item: { vin, id }, index, getCarInfoRecordWaiting, getCarDetailWaiting, getCarDetail, getCarInfoRecord, name } = props
     return (
         <TouchableOpacity
             key={index}
@@ -26,7 +26,8 @@ const renderItem = props => {
             onPress={() => {
                 getCarInfoRecordWaiting()
                 getCarDetailWaiting()
-                routerDirection.carInfo(parent)()
+               
+                routerDirection.carInfo(name)
                 InteractionManager.runAfterInteractions(() => {
                     getCarDetail({ car_id: id })
                     getCarInfoRecord({ car_id: id, vin })
@@ -90,12 +91,14 @@ const SearchCar = props => {
         getCarInfoRecordWaiting,
         getCarDetailWaiting,
         getCarListMore,
-        parent } = props
+        name } = props
     // console.log('getCarList',getCarList)
     // console.log('searchCarValues',searchCarValues)
     return (
+        <Content style={globalStyles.marginTop}>
         <FlatList
             showsVerticalScrollIndicator={false}
+            keyExtractor={(item, index) => `${index}`}
             onEndReachedThreshold={0.2}
             onEndReached={() => {
                 if (searchCarValues && searchCarValues.vinCode.length > 5 && getCarList.isResultStatus == 2) {
@@ -105,7 +108,8 @@ const SearchCar = props => {
             data={(searchCarValues && searchCarValues.vinCode.length > 5) ? carList : []}
             ListFooterComponent={searchCarReducer.getCarListMore.isResultStatus == 1 ? ListFooterComponent : undefined}
             ListEmptyComponent={ListEmptyComponent}
-            renderItem={({ item, index }) => renderItem({ parent, item, index, getCarDetail, getCarInfoRecord, getCarInfoRecordWaiting, getCarDetailWaiting })} />
+            renderItem={({ item, index }) => renderItem({ name, item, index, getCarDetail, getCarInfoRecord, getCarInfoRecordWaiting, getCarDetailWaiting })} />
+    </Content>
     )
 }
 

@@ -7,12 +7,12 @@ import {
     TouchableOpacity
 } from 'react-native'
 import { Button, Icon } from 'native-base'
-import ImageResizer from 'react-native-image-resizer'
-import ImagePicker from 'react-native-image-picker'
-import ImageCropPicker from 'react-native-image-crop-picker'
+// import ImageResizer from 'react-native-image-resizer'
+// import ImagePicker from 'react-native-image-picker'
+// import ImageCropPicker from 'react-native-image-crop-picker'
 import globalStyles, { styleColor } from '../../GlobalStyles'
-import { Actions } from 'react-native-router-flux'
-import { ProcessingManager } from 'react-native-video-processing'
+// import { Actions } from 'react-native-router-flux'
+// import { ProcessingManager } from 'react-native-video-processing'
 import * as routerDirection from '../../../util/RouterDirection'
 
 /***********************  临时解决方案，待改善：1，执行状态是否成功，成功数量。2，执行进度*/
@@ -98,107 +98,107 @@ export default class CameraVideoButton extends Component {
     }
 
     launchCamera() {//打开照相机进行拍照
-        ImagePicker.launchCamera(photoOptions, (response) => {
-            if (response.didCancel) {
-                //console.log('User cancelled video picker')
-            }
-            else if (response.error) {
-                //console.log('ImagePicker Error: ', response.error)
-            }
-            else {           
-            // console.log("response.uri",response.uri)
-             ImageResizer.createResizedImage(response.uri, 960, 960, 'JPEG', 100)
-             .then(res => {
-                console.log(res)
-                   this.props.getImage([{
-                    success: true,
-                    res: {
-                         imageUrl: res.uri,
-                         imageType: "image/jpeg",
-                         imageName: res.name
-                     }
-                 }])
-              })
-              .catch(err => {
-                 console.log(err)
-              });
-            }
-        })
+        // ImagePicker.launchCamera(photoOptions, (response) => {
+        //     if (response.didCancel) {
+        //         //console.log('User cancelled video picker')
+        //     }
+        //     else if (response.error) {
+        //         //console.log('ImagePicker Error: ', response.error)
+        //     }
+        //     else {           
+        //     // console.log("response.uri",response.uri)
+        //      ImageResizer.createResizedImage(response.uri, 960, 960, 'JPEG', 100)
+        //      .then(res => {
+        //         console.log(res)
+        //            this.props.getImage([{
+        //             success: true,
+        //             res: {
+        //                  imageUrl: res.uri,
+        //                  imageType: "image/jpeg",
+        //                  imageName: res.name
+        //              }
+        //          }])
+        //       })
+        //       .catch(err => {
+        //          console.log(err)
+        //       });
+        //     }
+        // })
     }
 
     createResizedImage(param) {//图片压缩
-       // console.log("param",param)
-        if (param.height <= 960 && param.width <= 960) {
-            const pos = param.path.lastIndexOf('/')
-            return Promise.resolve({
-                success: true,
-                res: {
-                    imageUrl: param.path,
-                    imageType: param.mime,
-                    imageName: encodeURI(param.path.substring(pos + 1))
-                }
-            })
-        }
-        return new Promise((resolve, reject) =>
-            ImageResizer.createResizedImage(param.path, 960, 960, 'JPEG', 100)
-                .then((resizedImageUri) => {
-                    const pos = param.path.lastIndexOf('/')
-                    resolve({
-                        success: true,
-                        res: {
-                            imageUrl: resizedImageUri.uri,
-                            imageType: param.mime,
-                            imageName: encodeURI(param.path.substring(pos + 1))
-                        }
-                    })
+    //    // console.log("param",param)
+    //     if (param.height <= 960 && param.width <= 960) {
+    //         const pos = param.path.lastIndexOf('/')
+    //         return Promise.resolve({
+    //             success: true,
+    //             res: {
+    //                 imageUrl: param.path,
+    //                 imageType: param.mime,
+    //                 imageName: encodeURI(param.path.substring(pos + 1))
+    //             }
+    //         })
+    //     }
+    //     return new Promise((resolve, reject) =>
+    //         ImageResizer.createResizedImage(param.path, 960, 960, 'JPEG', 100)
+    //             .then((resizedImageUri) => {
+    //                 const pos = param.path.lastIndexOf('/')
+    //                 resolve({
+    //                     success: true,
+    //                     res: {
+    //                         imageUrl: resizedImageUri.uri,
+    //                         imageType: param.mime,
+    //                         imageName: encodeURI(param.path.substring(pos + 1))
+    //                     }
+    //                 })
 
-                    //console.log("resizedImageUri.size",resizedImageUri)
-                    //console.log("param",param)
-                })
-                .catch((err) => {
-                    // console.log('err', err)
-                    reject({
-                        success: false,
-                        errMsg: err
-                    })
-                })
-        )
+    //                 //console.log("resizedImageUri.size",resizedImageUri)
+    //                 //console.log("param",param)
+    //             })
+    //             .catch((err) => {
+    //                 // console.log('err', err)
+    //                 reject({
+    //                     success: false,
+    //                     errMsg: err
+    //                 })
+    //             })
+    //     )
     }
 
     async openPicker() {//在相册选择照片并压缩
-        try {
-            const images = await ImageCropPicker.openPicker({ multiple: true, mediaType: 'photo' })
-            await this.props._cameraStart()
-            const newImages = await Promise.all(images.map(item => {
-                return this.createResizedImage(item)
-            }))
-            this.props.getImage(newImages)
-        } catch (err) {
-            console.log('err', err)
-        }
+        // try {
+        //     const images = await ImageCropPicker.openPicker({ multiple: true, mediaType: 'photo' })
+        //     await this.props._cameraStart()
+        //     const newImages = await Promise.all(images.map(item => {
+        //         return this.createResizedImage(item)
+        //     }))
+        //     this.props.getImage(newImages)
+        // } catch (err) {
+        //     console.log('err', err)
+        // }
     }
 
 
     async openCameraPicker() {//在相册选择视频并压缩
-        try {
-            const video = await ImageCropPicker.openPicker({ multiple: true, mediaType: 'video' })
-            this.props._videoStart()
-            if (video.length > 0) {
-                const options = {
-                    width: 270,
-                    height: 480,
-                    bitrateMultiplier: 12,
-                    minimumBitrate: 300000,
-                    removeAudio: false
-                };
-                ProcessingManager.compress(video[0].path, options) // like VideoPlayer compress options
-                    .then((data) => {
-                        this.props.getVideo(data)
-                    })
-            }
-        } catch (err) {
-            console.log('err', err)
-        }
+        // try {
+        //     const video = await ImageCropPicker.openPicker({ multiple: true, mediaType: 'video' })
+        //     this.props._videoStart()
+        //     if (video.length > 0) {
+        //         const options = {
+        //             width: 270,
+        //             height: 480,
+        //             bitrateMultiplier: 12,
+        //             minimumBitrate: 300000,
+        //             removeAudio: false
+        //         };
+        //         ProcessingManager.compress(video[0].path, options) // like VideoPlayer compress options
+        //             .then((data) => {
+        //                 this.props.getVideo(data)
+        //             })
+        //     }
+        // } catch (err) {
+        //     console.log('err', err)
+        // }
     }
 
     render() {

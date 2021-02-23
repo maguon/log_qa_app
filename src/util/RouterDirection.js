@@ -1,13 +1,14 @@
 import { Actions } from 'react-native-router-flux'
 
-export const searchCar = (parent) => {
-    if (parent === 'settingBlock') return Actions.searchCarAtSettingBlock
-    if (parent === 'homeBlock') return Actions.searchCarAtHomeBlock
+export const searchCar = (initialRouteName) => {
+    console.log("initialRouteName",initialRouteName)
+    if (initialRouteName === 'setting') return Actions.searchCarAtSettingBlock()
+    if (initialRouteName === 'home') return Actions.searchCarAtHomeBlock()
 }
 
-export const carInfo = (parent) => {
-    if (parent === 'settingBlock') return Actions.carInfoAtSettingBlock
-    if (parent === 'homeBlock') return Actions.carInfoAtHomeBlock
+export const carInfo = (name) => {
+    if (name === 'searchCarAtSettingBlock') return Actions.carInfoAtSettingBlock()
+    if (name === 'searchCarAtHomeBlock') return Actions.carInfoAtHomeBlock()
 }
 
 export const selectDriver = (parent) => {
@@ -20,9 +21,10 @@ export const singlePhotoView = (parent) => {
     if (parent === 'homeBlock') return Actions.singlePhotoViewAtHomeBlock
 }
 
-export const applyDamage = (parent) => {
-    if (parent === 'settingBlock') return Actions.applyDamageAtSettingBlock
-    if (parent === 'homeBlock') return Actions.applyDamageAtHomeBlock
+export const applyDamage = (name,initParam) => {
+    console.log(initParam)
+    if (name === 'carInfoAtSettingBlock') return Actions.applyDamageAtSettingBlock({initParam})
+    if (name === 'carInfoAtHomeBlock') return Actions.applyDamageAtHomeBlock({initParam})
 }
 
 export const applyDamageUploadImage = (parent) => {

@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
-import { View, Image, Linking, Dimensions, ToastAndroid, StatusBar, TouchableOpacity, StyleSheet } from 'react-native'
+import React from 'react'
+import { View, Image, Linking, Dimensions, StatusBar, TouchableOpacity, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
-import { Button, Icon, Form, Item, Text, Label, Input, Left, Body, Right, Title, List, ListItem, Container } from 'native-base'
+import { Button, Icon,  Item, Text, Input,  Container } from 'native-base'
 import { Actions } from 'react-native-router-flux'
-import globalStyles, { styleColor } from '../../GlobalStyles'
+import globalStyles from '../../GlobalStyles'
 import { Field, reduxForm } from 'redux-form'
 import * as loginAction from './LoginAction'
 import * as android_app from '../../../android_app.json'
@@ -29,7 +29,7 @@ const TextBox = props => {
 }
 
 const Login = props => {
-    const { login, initializationReducer: { validateVersion, data: { version: { force_update, url } } } } = props
+    const { login, initializationReducer: {  data: { version: { force_update, url } } } } = props
     // console.log('force_update', force_update)
     // console.log('props', props)
     return (
@@ -64,7 +64,7 @@ const Login = props => {
                     <Field
                         name='password'
                         secureTextEntry={true}
-                        iconName='md-lock'
+                        iconName='md-lock-closed'
                         placeholderText='请输入密码'
                         component={TextBox} />
                     <Button style={[styles.itemButton, globalStyles.styleBackgroundColor]}

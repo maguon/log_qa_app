@@ -8,10 +8,10 @@ export const getCarInfoRecord = (param) => async (dispatch, getState) => {
     try {
         const { communicationSettingReducer: { data: { record_host } } } = getState()
         const url = `${record_host}/user/${uid}/car/${car_id}/record`
-        console.log('url',url)
-        console.log('param',param)
+        // console.log('url',url)
+        // console.log('param',param)
         const res = await httpRequest.get(url)
-        console.log('res',res)
+        // console.log('res',res)
         if (res.success) {
             let recordList = []
             if (res.result.length > 0) {

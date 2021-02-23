@@ -92,7 +92,7 @@ class CheckVehicleAllList extends Component {
             getCarDetail, getCarInfoRecord, getCarInfoRecordWaiting, getCarDetailWaiting, parent, handleSubmit, getCheckVehicleListWaiting, getCheckVehicleList,getTodayCheckListWaiting,getTodayCheck
         } = this.props
         return (
-            <Container style={globalStyles.container}>
+            <Container style={[globalStyles.container,globalStyles.marginTop]}>
                 <List style={styles.list}>
                     <ListItem icon onPress={() => {
                         getTodayCheckListWaiting()
@@ -121,7 +121,7 @@ class CheckVehicleAllList extends Component {
                         }}
                         colors={[styleColor]}
                     />}
-                    keyExtractor={(item, index) => index}
+                    keyExtractor={(item, index) => `${index}`}
                     showsVerticalScrollIndicator={false}
                     ListEmptyComponent={renderEmpty}
                     onEndReachedThreshold={0.2}

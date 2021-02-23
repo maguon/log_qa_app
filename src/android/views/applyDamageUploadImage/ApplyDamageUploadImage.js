@@ -148,7 +148,7 @@ const ApplyDamageUploadImage = props => {
             <Container >
                 <FlatList
                     style={styles.flatList}
-                    keyExtractor={(item, index) => index}
+                    keyExtractor={(item, index) => `${index}`}
                     data={imageList.length > 0 || videoUrl ? dataList : []}
                     numColumns={2}
                     ListEmptyComponent={() => renderListEmpty({ parent, uploadImageForApplyDamageWaiting, uploadImageForApplyDamage, uploadVideoForApplyDamage, uploadVideoForApplyDamageWaiting })}

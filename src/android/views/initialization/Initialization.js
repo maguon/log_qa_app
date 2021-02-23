@@ -13,7 +13,6 @@ import {
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 import { Button } from 'native-base'
-import SplashScreen from 'react-native-splash-screen'
 import * as initializationAction from './InitializationAction'
 
 const window = Dimensions.get('window')
@@ -28,7 +27,7 @@ class Initialization extends Component {
 
     componentDidMount() {
         this.props.getCommunicationSetting()
-        //setTimeout(SplashScreen.hide, 2000)
+       
     }
 
     linkDownload(url) {

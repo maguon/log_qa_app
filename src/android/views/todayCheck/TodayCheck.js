@@ -71,7 +71,7 @@ const TodayCheck = props => {
                         }}
                         colors={[styleColor]}
                     />}
-                    keyExtractor={(item, index) => index}
+                    keyExtractor={(item, index) => `${index}`}
                     showsVerticalScrollIndicator={false}
                     ListEmptyComponent={renderEmpty}
                     onEndReachedThreshold={0.2}

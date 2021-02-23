@@ -1,15 +1,15 @@
 import * as httpRequest from '../../../util/HttpRequest'
 import * as loginActionTypes from './LoginActionTypes'
 import { ObjectToUrl } from '../../../util/ObjectToUrl'
-import { getFormValues, blur } from 'redux-form'
+import { getFormValues } from 'redux-form'
 import { Actions } from 'react-native-router-flux'
 import { ToastAndroid } from 'react-native'
 import requestHeaders from '../../../util/RequestHeaders'
 import localStorageKey from '../../../util/LocalStorageKey'
-import localStorage from '../../../util/LocalStorage'
+import {setItemObject} from '../../../util/LocalStorage'
 import * as communicationSettingActions from '../communicationSetting/communicationSettingActions'
 import * as initializationActionTypes from '../initialization/InitializationActionTypes'
-import { sleep } from '../../../util/util'
+// import { sleep } from '../../../util/util'
 import * as android_app from '../../../android_app.json'
 
 
@@ -37,6 +37,7 @@ export const login = () => async (dispatch, getState) => {
                 const getUserInfoUrl = `${base_host}/user${ObjectToUrl({ userId: res.result.userId })}`
                 const getUserInfoRes = await httpRequest.get(getUserInfoUrl)
                 if (getUserInfoRes.success) {
+                    // console.log('getUserInfoRes', getUserInfoRes)
                     const { uid, mobile, real_name, type, gender, avatar_image, status } = getUserInfoRes.result[0]
                     const user = {
                         uid, mobile, real_name, type, gender, avatar_image, status,
@@ -45,10 +46,7 @@ export const login = () => async (dispatch, getState) => {
                     requestHeaders.set('auth-token', res.result.accessToken)
                     requestHeaders.set('user-type', type)
                     requestHeaders.set('user-name', mobile)
-                    localStorage.save({
-                        key: localStorageKey.USER,
-                        data: user
-                    })
+                    await setItemObject(localStorageKey.USER,user)
                     await dispatch(communicationSettingActions.saveCommunicationSetting({ url: server }))
                     await dispatch({ type: loginActionTypes.login_success, payload: { user } })
                     Actions.main()
@@ -86,7 +84,6 @@ export const validateVersion = () => async (dispatch, getState) => {
     try {
         // console.log(getState())
         let { mobile, password, server } = getFormValues('loginForm')(getState())
-        // console.log()
         server = `${server}`.replace(/\s*/g, "")
         mobile = `${mobile}`.replace(/\s*/g, "")
 
@@ -171,12 +168,9 @@ export const validateVersion = () => async (dispatch, getState) => {
     }
 }
 
-export const cleanLogin = () => (dispatch, getState) => {
+export const cleanLogin = () => async (dispatch, getState) => {
     const { loginReducer: { data: { user: { mobile } } } } = getState()
-    localStorage.save({
-        key: localStorageKey.USER,
-        data: { mobile }
-    })
+    await  setItemObject( localStorageKey.USER,mobile)
     dispatch({ type: loginActionTypes.Set_UserInfo, payload: { user: { mobile } } })
 }
 

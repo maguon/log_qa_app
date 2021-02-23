@@ -111,7 +111,7 @@ const DemageList = props => {
     }
     else {
         return (
-            <Container style={globalStyles.listBackgroundColor}>
+            <Container style={[globalStyles.listBackgroundColor,globalStyles.marginTop]}>
                 <FlatList
                     showsVerticalScrollIndicator={false}
                     ListEmptyComponent={renderEmpty}

@@ -51,7 +51,7 @@ const CarInfoRecord = props => {
     // console.log('carInfoRecord.comment', carInfoRecord.comment)
     return (
         <FlatList
-            keyExtractor={(item, index) => index}
+            keyExtractor={(item, index) => `${index}`}
             showsVerticalScrollIndicator={false}
             data={carInfoRecord}
             renderItem={renderListItem}

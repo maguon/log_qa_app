@@ -4,7 +4,7 @@ import {
   View,
   TouchableOpacity
 } from 'react-native';
-import Video from 'react-native-video';
+// import Video from 'react-native-video';
 import { Icon, Button, Spinner } from 'native-base'
 
 export default class VideoView extends Component {
@@ -57,7 +57,7 @@ export default class VideoView extends Component {
           style={styles.fullScreen}
           onPress={() => this.setState({ paused: !this.state.paused })}
         >
-          <Video
+          {/* <Video
             ref={video => this.video = video}
             source={{ uri: videoUrl }}
             style={styles.fullScreen}
@@ -73,7 +73,7 @@ export default class VideoView extends Component {
             onProgress={this.onProgress}
             onEnd={this.onEnd}
             repeat={false}
-          />
+          /> */}
         </TouchableOpacity>
         {this.state.paused && !this.state.isLoadingVideo && <View style={{ position: 'absolute' }}>
           <Button style={{ backgroundColor: 'rgba(0,0,0,0.8)' }} onPress={() => this.setState({ paused: !this.state.paused })} >
