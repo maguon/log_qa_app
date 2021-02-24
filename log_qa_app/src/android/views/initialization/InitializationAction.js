@@ -154,14 +154,6 @@ export const validateVersion = (tryCount = 1) => async (dispatch, getState) => {
 export const loadLocalStorage = () => async (dispatch) => {
     const currentStep = 2
     try {
-        // localStorage.save({
-        //     key: localStorageKey.USER,
-        //     data: {
-        //         userId: 93,
-        //         token: 'v4m1x9wFedXZ6S9rbV5Ax-9EAWY=9i39iMZK1a5578b3b728c1f8dbc87071b199c67f8b4ae35e233647cd1825977e83a8c812d194c41a71049edad8470b361d415a76'
-        //     }
-        // })
-        // localStorage.remove({ key: localStorageKey.USER })
         const localStorageRes = await getItemObject( localStorageKey.USER )
         if (localStorageRes.token && localStorageRes.uid) {
             dispatch({ type: initializationActionTypes.Load_LocalStorage_Success, payload: { step: currentStep } })
