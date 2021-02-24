@@ -41,7 +41,7 @@ const SelectDriver = props => {
     }
     else {
         return (
-            <Container>
+            <Container style={globalStyles.marginTop}>
                 <FlatList
                     showsVerticalScrollIndicator={false}
                     data={searchDriverValues ? driverList.filter(item => item.drive_name.indexOf(searchDriverValues.keyword) >= 0 || (item.mobile && item.mobile.indexOf(searchDriverValues.keyword) >= 0)) : driverList}

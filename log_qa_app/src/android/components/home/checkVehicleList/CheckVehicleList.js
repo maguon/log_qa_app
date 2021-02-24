@@ -3,12 +3,13 @@ import {
     StyleSheet,
     Text,
     View,
+    Image,
     FlatList,
     TouchableOpacity,
-    InteractionManager, RefreshControl
+    InteractionManager, RefreshControl, Alert
 } from 'react-native'
 import { connect } from 'react-redux'
-import { Icon, Thumbnail} from 'native-base'
+import {Button, Icon, Thumbnail} from 'native-base'
 import globalStyles, { styleColor } from '../../../GlobalStyles'
 import * as routerDirection from '../../../../util/RouterDirection'
 import * as checkVehicleListAction from './CheckVehicleListAction'
@@ -18,14 +19,12 @@ import moment from 'moment'
 
 
 const renderListItem = props => {
-    const { item: { vin, comment, created_on, id }, index, getCarDetail, getCarInfoRecord, getCarInfoRecordWaiting, getCarDetailWaiting } = props
-    // console.log(parent)
-    // console.log("props",props)
+    const { item: { vin, comment, created_on, id }, index, getCarDetail, parent, getCarInfoRecord, getCarInfoRecordWaiting, getCarDetailWaiting } = props
     return (
         <TouchableOpacity key={index} style={[styles.itemContainer]} onPress={() => {
             getCarInfoRecordWaiting()
             getCarDetailWaiting()
-            routerDirection.carInfo("searchCarAtHomeBlock")
+            routerDirection.carInfo(parent)()
             InteractionManager.runAfterInteractions(() => {
                 getCarDetail({ car_id: id })
                 getCarInfoRecord({ car_id: id ,vin})
@@ -82,7 +81,7 @@ class CheckVehicleList extends Component {
                     }}
                     colors={[styleColor]}
                 />}
-                keyExtractor={(item, index) => `${index}`}
+                keyExtractor={(item, index) => index}
                 showsVerticalScrollIndicator={false}
                 ListEmptyComponent={renderEmpty}
                 data={checkVehicleList}

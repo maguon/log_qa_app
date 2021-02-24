@@ -6,6 +6,7 @@ import globalStyles from '../GlobalStyles'
 // import BarcodeScanner from 'react-native-barcodescanner'
 
 const Home = props => {
+    console.log(props)
     return (
         <Container style={[globalStyles.listBackgroundColor,globalStyles.marginTop]}>
             <CheckStatistics />

@@ -133,7 +133,7 @@ export default class App extends Component {
                             tabBarStyle={styles.tabBarStyle}   
                             showLabel={false}
                             tabBarSelectedItemStyle={styles.tabBarSelectedItemStyle} hideNavBar  >
-                            <Scene key="homeBlock" icon={TabIcon} initial={true} online='ios-home' outline='ios-home-outline'  size={25} >
+                            <Scene key="homeBlock" icon={TabIcon} initial={true} online='ios-home' outline='ios-home-outline' parent='homeBlock' size={25} >
                                 <Scene key="home" component={Home} initial={true} title='首页' hideNavBar={false} navBar={SearchBar} />
                                 <Scene key="carInfoAtHomeBlock" component={CarInfo} LeftButton={LeftButton} title='车辆信息' hideNavBar={false} hideTabBar navBar={NavBar} />
                                 <Scene key="searchCarAtHomeBlock" component={SearchCar} hideNavBar={false} hideTabBar navBar={SearchCarBar} />
@@ -170,6 +170,9 @@ export default class App extends Component {
                                 <Scene key="applyDamageUploadImageAtHomeBlock" component={ApplyDamageUploadImage} LeftButton={ApplyDamageUploadImageLeftButton} RightButton={ApplyDamageUploadImageSubmit}
                                     title='质损申请' hideTabBar hideNavBar={false} navBar={NavBar} />
                             </Scene>
+
+
+                            
                             <Scene key="settingBlock" icon={TabIcon} online='ios-settings' outline='ios-settings-outline' size={25} >
 
                                 <Scene key="setting" component={Setting} title='设置' hideNavBar={false} navBar={SearchBar} />

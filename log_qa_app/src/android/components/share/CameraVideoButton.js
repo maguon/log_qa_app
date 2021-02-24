@@ -202,7 +202,7 @@ export default class CameraVideoButton extends Component {
     }
 
     render() {
-        const { parent } = this.props
+        const { routeName } = this.props
         return (
             <View>
                 <Button
@@ -242,7 +242,7 @@ export default class CameraVideoButton extends Component {
                             </TouchableOpacity> */}
                             <TouchableOpacity
                                 onPress={() => this.setState({ operationModalVisible: false }, () => {
-                                    routerDirection.pictureRecording(parent)({ uploadVideo: this.props.getVideo })
+                                    routerDirection.pictureRecording(routeName)({ uploadVideo: this.props.getVideo })
                                 })}>
                                 <View>
                                     <Text style={[styles.modalListItemTitle, globalStyles.midText]}>摄像</Text>
