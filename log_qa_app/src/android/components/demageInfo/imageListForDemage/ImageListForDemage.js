@@ -38,6 +38,7 @@ const ImageListForDemageInfo = props => {
         <FlatList
             style={styles.flatList}
             data={demageImageList}
+            keyExtractor={(item, index) => `${index}`}
             numColumns={2}
             ListEmptyComponent={renderListEmpty}
             renderItem={({ item, index }) => renderItem({ item, index, parent, file_host, demageImageList })} />

@@ -44,6 +44,7 @@ const CarModelList = props => {
             <Container>
                 <FlatList
                     data={carModelList}
+                    keyExtractor={(item, index) => `${index}`}
                     renderItem={(param) => renderListItem({ onSelect, ...param })} />
             </Container>
         )

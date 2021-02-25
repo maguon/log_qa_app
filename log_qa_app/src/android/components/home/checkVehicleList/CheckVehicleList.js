@@ -81,7 +81,7 @@ class CheckVehicleList extends Component {
                     }}
                     colors={[styleColor]}
                 />}
-                keyExtractor={(item, index) => index}
+                keyExtractor={(item, index) => `${index}`}
                 showsVerticalScrollIndicator={false}
                 ListEmptyComponent={renderEmpty}
                 data={checkVehicleList}

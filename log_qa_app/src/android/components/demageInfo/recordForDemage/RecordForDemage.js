@@ -45,6 +45,7 @@ const RecordForDemageInfo = props => {
             <ListHeader />
             <FlatList
                 showsVerticalScrollIndicator={false}
+                keyExtractor={(item, index) => `${index}`}
                 data={carInfoRecord}
                 renderItem={renderItem}
                 ListEmptyComponent={renderListEmpty} />

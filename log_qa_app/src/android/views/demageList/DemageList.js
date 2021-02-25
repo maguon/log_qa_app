@@ -115,6 +115,7 @@ const DemageList = props => {
                 <FlatList
                     showsVerticalScrollIndicator={false}
                     ListEmptyComponent={renderEmpty}
+                    keyExtractor={(item, index) => `${index}`}
                     data={demageList}
                     onEndReachedThreshold={0.2}
                     onEndReached={() => {

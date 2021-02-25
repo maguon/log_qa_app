@@ -109,6 +109,7 @@ const ResponsibilityList = props => {
             <Container style={[globalStyles.listBackgroundColor,globalStyles.marginTop]}>
                 <FlatList
                     showsVerticalScrollIndicator={false}
+                    keyExtractor={(item, index) => `${index}`}
                     ListEmptyComponent={renderEmpty}
                     data={responsibilityList}
                     onEndReachedThreshold={0.2}
