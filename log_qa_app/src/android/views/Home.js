@@ -3,10 +3,9 @@ import CheckStatistics from '../components/home/checkStatistics/CheckStatistics'
 import CheckVehicleList from '../components/home/checkVehicleList/CheckVehicleList'
 import { Container } from 'native-base'
 import globalStyles from '../GlobalStyles'
-// import BarcodeScanner from 'react-native-barcodescanner'
+// import BarcodeScanner from '@paraboly/react-native-barcode-scanner'
 
 const Home = props => {
-    console.log(props)
     return (
         <Container style={[globalStyles.listBackgroundColor,globalStyles.marginTop]}>
             <CheckStatistics />

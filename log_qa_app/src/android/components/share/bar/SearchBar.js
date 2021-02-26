@@ -24,7 +24,8 @@ class SearchBar extends Component {
     barcodeReceived(e) {
         this.setState({ modalVisible: false })
         InteractionManager.runAfterInteractions(() => {
-            RouterDirection.searchCar(this.props.initialRouteName)({ initParam: { vinCode: e.data } })
+            // console.log('this.props',this.props)
+            RouterDirection.searchCar(this.props.parent)({ initParam: { vinCode: e.data } })
             InteractionManager.runAfterInteractions(() => {
                 e.data.length > 5 && this.props.getCarList(e.data)
             })
