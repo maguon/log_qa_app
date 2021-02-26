@@ -5,18 +5,18 @@ import { ToastAndroid } from 'react-native'
 import * as carInfoRecordAction from '../../components/carInfo/carInfoRecord/CarInfoRecordAction'
 import * as checkVehicleListAction from '../../components/home/checkVehicleList/CheckVehicleListAction'
 import * as checkStatisticsAction from "../../components/home/checkStatistics/CheckStatisticsAction";
-// import sound from "react-native-sound";
+import sound from "react-native-sound";
 
-// const successSound = new sound('sound01.wav',"", (error) => {
-//     if (error) {
-//         console.log("播放失败。。。");
-//     }
-// });
-// const failedSound = new sound('sound02.wav',"", (error) => {
-//     if (error) {
-//         console.log("播放失败。。。");
-//     }
-// });
+const successSound = new sound('sound01.wav',"", (error) => {
+    if (error) {
+        console.log("播放失败。。。");
+    }
+});
+const failedSound = new sound('sound02.wav',"", (error) => {
+    if (error) {
+        console.log("播放失败。。。");
+    }
+});
 
 export const qualityAssurance = () => async (dispatch, getState) => {
     dispatch({ type: carInfoActionTypes.disabled, payload: {disabled:true} })
@@ -34,20 +34,20 @@ export const qualityAssurance = () => async (dispatch, getState) => {
         console.log(res)
         if (res.success) {
             dispatch({ type: carInfoActionTypes.qualityAssurance_success, payload: {} })
-            // successSound.play()
+             successSound.play()
             ToastAndroid.showWithGravity('提交成功！', ToastAndroid.CENTER, ToastAndroid.BOTTOM)
             dispatch(carInfoRecordAction.getCarInfoRecord({ car_id: carDetail.id, vin: carDetail.vin }))
             dispatch(checkVehicleListAction.getCheckVehicleList())
             dispatch(checkStatisticsAction.getCheckStatistics())
         } else {
             dispatch({ type: carInfoActionTypes.qualityAssurance_success, payload: {} })
-            // failedSound.play()
+            failedSound.play()
             ToastAndroid.showWithGravity(`提交失败！${res.msg}`, ToastAndroid.CENTER, ToastAndroid.BOTTOM)
 
         }
     } catch (err) {
         dispatch({ type: carInfoActionTypes.qualityAssurance_success, payload: {} })
-        // failedSound.play()
+        failedSound.play()
         ToastAndroid.showWithGravity(`提交失败！${err}`, ToastAndroid.CENTER, ToastAndroid.BOTTOM)
 
     }
@@ -68,7 +68,7 @@ export const carSort = param => async (dispatch, getState) => {
             opType:param.opType
         })
         if (res.success) {
-            // successSound.play()
+             successSound.play()
             if(param.opType==11) {
                 ToastAndroid.showWithGravity(`分拣入库成功！`, ToastAndroid.CENTER, ToastAndroid.BOTTOM)
             }else if(param.opType==13){
@@ -81,12 +81,12 @@ export const carSort = param => async (dispatch, getState) => {
             dispatch(carInfoRecordAction.getCarInfoRecord({ car_id: param.carId, vin: param.vin }))
 
         } else {
-            // failedSound.play()
+             failedSound.play()
             ToastAndroid.showWithGravity(`分拣失败！`, ToastAndroid.CENTER, ToastAndroid.BOTTOM)
             dispatch({ type: carInfoActionTypes.save_carSort_failed, payload: { failedMsg: res.msg } })
         }
     } catch (err) {
-        // failedSound.play()
+         failedSound.play()
         ToastAndroid.showWithGravity(`分拣失败！`, ToastAndroid.CENTER, ToastAndroid.BOTTOM)
         dispatch({ type: carInfoActionTypes.save_carSort_error, payload: { errorMsg: res.msg } })
 

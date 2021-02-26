@@ -26,8 +26,8 @@ const DemageInfo = props => {
                 <Tab
                     tabStyle={globalStyles.styleBackgroundColor}
                     activeTabStyle={globalStyles.styleBackgroundColor}
-                    activeTextStyle={[globalStyles.midText, { color: '#fff' }]}
-                    textStyle={[globalStyles.midText, { color: '#adc5d5' }]}
+                    // activeTextStyle={[globalStyles.midText, { color: '#fff' }]}
+                    // textStyle={[globalStyles.midText, { color: '#adc5d5' }]}
                     heading="车辆">
                     {(getCarInfo.isResultStatus == 1 || getCarInfoRecord.isResultStatus == 1) ?
                         <Container>
@@ -41,8 +41,8 @@ const DemageInfo = props => {
                 <Tab
                     tabStyle={globalStyles.styleBackgroundColor}
                     activeTabStyle={globalStyles.styleBackgroundColor}
-                    activeTextStyle={[globalStyles.midText, { color: '#fff' }]}
-                    textStyle={[globalStyles.midText, { color: '#adc5d5' }]}
+                    // activeTextStyle={[globalStyles.midText, { color: '#fff' }]}
+                    // textStyle={[globalStyles.midText, { color: '#adc5d5' }]}
                     heading="质损">
                     <Container>
                         <DemageDetail initParam={initParam} />
@@ -51,8 +51,8 @@ const DemageInfo = props => {
                 <Tab
                     tabStyle={globalStyles.styleBackgroundColor}
                     activeTabStyle={globalStyles.styleBackgroundColor}
-                    activeTextStyle={[globalStyles.midText, { color: '#fff' }]}
-                    textStyle={[globalStyles.midText, { color: '#adc5d5' }]}
+                    // activeTextStyle={[globalStyles.midText, { color: '#fff' }]}
+                    // textStyle={[globalStyles.midText, { color: '#adc5d5' }]}
                     heading="照片">
                     <Container>
                         <ImageListForDemage initParam={initParam} parent={parent} />
@@ -61,8 +61,8 @@ const DemageInfo = props => {
                 <Tab
                     tabStyle={globalStyles.styleBackgroundColor}
                     activeTabStyle={globalStyles.styleBackgroundColor}
-                    activeTextStyle={[globalStyles.midText, { color: '#fff' }]}
-                    textStyle={[globalStyles.midText, { color: '#adc5d5' }]}
+                    // activeTextStyle={[globalStyles.midText, { color: '#fff' }]}
+                    // textStyle={[globalStyles.midText, { color: '#adc5d5' }]}
                     heading="处理">
                     {(getDemageOpResult.isResultStatus == 1) ?
                         <Container>

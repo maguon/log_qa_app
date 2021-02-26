@@ -121,8 +121,8 @@ class CarSort extends Component {
                     <Tab
                         tabStyle={globalStyles.styleBackgroundColor}
                         activeTabStyle={globalStyles.styleBackgroundColor}
-                        activeTextStyle={[globalStyles.midText, { color: '#fff' }]}
-                        textStyle={[globalStyles.midText, { color: '#adc5d5' }]}
+                        // activeTextStyle={[globalStyles.midText, { color: '#fff' }]}
+                        // textStyle={[globalStyles.midText, { color: '#adc5d5' }]}
                         heading="分拣道位"
                      >
                         <Container>
@@ -153,8 +153,8 @@ class CarSort extends Component {
                     <Tab
                         tabStyle={globalStyles.styleBackgroundColor}
                         activeTabStyle={globalStyles.styleBackgroundColor}
-                        activeTextStyle={[globalStyles.midText, { color: '#fff' }]}
-                        textStyle={[globalStyles.midText, { color: '#adc5d5' }]}
+                        // activeTextStyle={[globalStyles.midText, { color: '#fff' }]}
+                        // textStyle={[globalStyles.midText, { color: '#adc5d5' }]}
                         heading="分拣入库"
                        >
                         <Container>
@@ -185,8 +185,8 @@ class CarSort extends Component {
                     <Tab
                         tabStyle={globalStyles.styleBackgroundColor}
                         activeTabStyle={globalStyles.styleBackgroundColor}
-                        activeTextStyle={[globalStyles.midText, { color: '#fff' }]}
-                        textStyle={[globalStyles.midText, { color: '#adc5d5' }]}
+                        // activeTextStyle={[globalStyles.midText, { color: '#fff' }]}
+                        // textStyle={[globalStyles.midText, { color: '#adc5d5' }]}
                         heading="分拣出库"
                        >
                         <Container>

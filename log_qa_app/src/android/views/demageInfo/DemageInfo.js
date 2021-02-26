@@ -28,8 +28,8 @@ const DemageInfo = props => {
                 <Tab
                     tabStyle={globalStyles.styleBackgroundColor}
                     activeTabStyle={globalStyles.styleBackgroundColor}
-                    activeTextStyle={[globalStyles.midText, { color: '#fff' }]}
-                    textStyle={[globalStyles.midText, { color: '#adc5d5' }]}
+                    // activeTextStyle={[globalStyles.midText, { color: '#fff' }]}
+                    // textStyle={[globalStyles.midText, { color: '#adc5d5' }]}
                     heading="车辆">
                     {(getCarInfo.isResultStatus == 1 || getCarInfoRecord.isResultStatus == 1) ?
                         <Container>
@@ -43,8 +43,8 @@ const DemageInfo = props => {
                 <Tab
                     tabStyle={globalStyles.styleBackgroundColor}
                     activeTabStyle={globalStyles.styleBackgroundColor}
-                    activeTextStyle={[globalStyles.midText, { color: '#fff' }]}
-                    textStyle={[globalStyles.midText, { color: '#adc5d5' }]}
+                    // activeTextStyle={[globalStyles.midText, { color: '#fff' }]}
+                    // textStyle={[globalStyles.midText, { color: '#adc5d5' }]}
                     heading="质损">
                     <Container>
                         {damage_status == 1 && <DemageEditor initParam={initParam} parent={parent} />}
@@ -54,8 +54,8 @@ const DemageInfo = props => {
                 <Tab
                     tabStyle={globalStyles.styleBackgroundColor}
                     activeTabStyle={globalStyles.styleBackgroundColor}
-                    activeTextStyle={[globalStyles.midText, { color: '#fff' }]}
-                    textStyle={[globalStyles.midText, { color: '#adc5d5' }]}
+                    // activeTextStyle={[globalStyles.midText, { color: '#fff' }]}
+                    // textStyle={[globalStyles.midText, { color: '#adc5d5' }]}
                     heading="照片">
                     <Container>
                         {damage_status != 1 && <ImageListForDemage initParam={initParam} parent={parent} />}
