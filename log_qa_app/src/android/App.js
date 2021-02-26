@@ -172,8 +172,8 @@ export default class App extends Component {
                             </Scene>
 
 
-                            
-                            <Scene key="settingBlock" icon={TabIcon} online='ios-settings' outline='ios-settings-outline' size={25} >
+
+                            <Scene key="settingBlock" icon={TabIcon} online='ios-settings' outline='ios-settings-outline' parent='settingBlock' size={25} >
 
                                 <Scene key="setting" component={Setting} title='设置' hideNavBar={false} navBar={SearchBar} />
                                 <Scene key='pictureRecordingAtSettingBlock'
@@ -225,7 +225,7 @@ export default class App extends Component {
                                     hideTabBar hideNavBar={false} navBar={NavBar} />
                                 <Scene key="demageInfo" LeftButton={LeftButton} component={DemageInfo} title='质损详情' hideTabBar
                                     hideNavBar={false} navBar={NavBar} />
-                                <Scene key="checkVehicleAllList" LeftButton={LeftButton} component={CheckVehicleAllList} title='检车记录' hideTabBar
+                                <Scene key="checkVehicleAllList" LeftButton={LeftButton} component={CheckVehicleAllList}  title='检车记录' hideTabBar
                                     hideNavBar={false} navBar={NavBar} RightButton={CheckVehicleAllListToolButton}/>
 
                                 <Scene key="todayCheck" LeftButton={LeftButton} component={TodayCheck} title='今日检车' hideTabBar
@@ -244,8 +244,6 @@ export default class App extends Component {
                                     hideTabBar hideNavBar={false} navBar={NavBar} />
                             </Scene>
                         </Stack>
-                    {/* </Scene> */}
-                    
                 </Scene>
                 </Lightbox>
                 </Modal>

@@ -32,7 +32,8 @@ class SearchBar extends Component {
     }
 
     render() {
-        const { initialRouteName } = this.props
+        const { parent } = this.props
+        // console.log("this.props",this.props)
         return (
             <View style={[styles.container, { width: width }]}>
                 <StatusBar hidden={false} />
@@ -47,7 +48,7 @@ class SearchBar extends Component {
                     <Body style={styles.body}>
                         <TouchableOpacity
                             underlayColor={'rgba(255, 255, 255, 0)'}
-                            onPress={()=>{routerDirection.searchCar(initialRouteName)}}
+                            onPress={routerDirection.searchCar(parent)}
                             style={styles.bodyTouch}>
                             <View style={styles.bodyTouchChild}>
                                 <View style={styles.input} >

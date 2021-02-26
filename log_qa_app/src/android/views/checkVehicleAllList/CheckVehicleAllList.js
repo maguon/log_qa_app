@@ -91,6 +91,7 @@ class CheckVehicleAllList extends Component {
             getCheckVehicleAllListMore,
             getCarDetail, getCarInfoRecord, getCarInfoRecordWaiting, getCarDetailWaiting, parent, handleSubmit, getCheckVehicleListWaiting, getCheckVehicleList,getTodayCheckListWaiting,getTodayCheck
         } = this.props
+        console.log("this.props",this.props)
         return (
             <Container style={[globalStyles.container,globalStyles.marginTop]}>
                 <List style={styles.list}>

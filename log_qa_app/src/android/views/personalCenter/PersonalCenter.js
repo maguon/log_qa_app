@@ -5,7 +5,7 @@ import {
     StyleSheet
 } from 'react-native'
 import { connect } from 'react-redux'
-// import ImagePicker from 'react-native-image-crop-picker'
+import ImagePicker from 'react-native-image-crop-picker'
 import { Button, Container, Content, Header, Icon, Left, Body, Right, Title, List, ListItem, Thumbnail, Toast, Separator } from 'native-base'
 import * as personalCenterAction from './PersonalCenterAction'
 import globalStyles, { styleColor } from '../../GlobalStyles'
@@ -17,35 +17,35 @@ class PersonalCenter extends Component {
     }
 
     openImage() {
-        // ImagePicker.openPicker({
-        //     width: 360,
-        //     height: 360,
-        //     cropping: true
-        // }).then(image => {
-        //     const pos = image.path.lastIndexOf('/')
-        //     this.props.updatePersonalImage({
-        //         uploadImage: {
-        //             optionalParam: {
-        //                 imageType: 0
-        //             },
-        //             requiredParam: {
-        //                 userId: this.props.loginReducer.data.user.uid
-        //             },
-        //             postParam: {
-        //                 key: 'image',
-        //                 imageUrl: image.path,
-        //                 imageType: image.mime,
-        //                 imageName: encodeURI(image.path.substring(pos + 1))
-        //             }
-        //         },
-        //         updateAvatarImage: {
-        //             putParam: {},
-        //             requiredParam: {
-        //                 userId: this.props.loginReducer.data.user.uid
-        //             }
-        //         }
-        //     })
-        // }).catch(err => console.log(err))
+        ImagePicker.openPicker({
+            width: 360,
+            height: 360,
+            cropping: true
+        }).then(image => {
+            const pos = image.path.lastIndexOf('/')
+            this.props.updatePersonalImage({
+                uploadImage: {
+                    optionalParam: {
+                        imageType: 0
+                    },
+                    requiredParam: {
+                        userId: this.props.loginReducer.data.user.uid
+                    },
+                    postParam: {
+                        key: 'image',
+                        imageUrl: image.path,
+                        imageType: image.mime,
+                        imageName: encodeURI(image.path.substring(pos + 1))
+                    }
+                },
+                updateAvatarImage: {
+                    putParam: {},
+                    requiredParam: {
+                        userId: this.props.loginReducer.data.user.uid
+                    }
+                }
+            })
+        }).catch(err => console.log(err))
     }
 
     render() {

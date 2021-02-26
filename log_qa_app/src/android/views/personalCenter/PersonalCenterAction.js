@@ -4,10 +4,11 @@ import * as loginActionTypes from '../login//LoginActionTypes'
 import { ObjectToUrl } from '../../../util/ObjectToUrl'
 import { ToastAndroid } from 'react-native'
 
-export const updatePersonalImage = (param) => async (dispatch) => {   
+export const updatePersonalImage = (param) => async (dispatch, getState) => {   
     dispatch({ type: personalCenterActionTypes.Update_PersonalImage_waiting, payload: {} })
+    // console.log('param',param)
     try {
-        const { communicationSettingReducer: { data: { base_host, file_host } } } = getState()
+        const { communicationSettingReducer: { data: { base_host, file_host } } } = getState()     
         const uploadUrl = `${file_host}/user/${param.uploadImage.requiredParam.userId}/image${ObjectToUrl(param.uploadImage.optionalParam)}`
         const uploadUrlRes = await httpRequest.postFile(uploadUrl, param.uploadImage.postParam)
         if (uploadUrlRes.success) {
@@ -20,14 +21,14 @@ export const updatePersonalImage = (param) => async (dispatch) => {
                 ToastAndroid.showWithGravity(`修改成功！`, ToastAndroid.CENTER, ToastAndroid.BOTTOM)
             }else{
                 dispatch({ type: personalCenterActionTypes.Update_PersonalImage_failed, payload: { failedMsg: updateAvatarImageRes.msg } })
-                ToastAndroid.showWithGravity(`修改失败！${updateAvatarImageRes.msg}`, ToastAndroid.CENTER, ToastAndroid.BOTTOM)
+                ToastAndroid.showWithGravity(`修改失败！1${updateAvatarImageRes.msg}`, ToastAndroid.CENTER, ToastAndroid.BOTTOM)
             }
         } else {
             dispatch({ type: personalCenterActionTypes.Update_PersonalImage_failed, payload: { failedMsg: uploadUrlRes.msg } })
-            ToastAndroid.showWithGravity(`修改失败！${uploadUrlRes.msg}`, ToastAndroid.CENTER, ToastAndroid.BOTTOM)
+            ToastAndroid.showWithGravity(`修改失败！2${uploadUrlRes.msg}`, ToastAndroid.CENTER, ToastAndroid.BOTTOM)
         }
     } catch (err) {
         dispatch({ type: personalCenterActionTypes.Update_PersonalImage_error, payload: { errorMsg: err } })
-        ToastAndroid.showWithGravity(`修改失败！${err}`, ToastAndroid.CENTER, ToastAndroid.BOTTOM)
+        ToastAndroid.showWithGravity(`修改失败！3${err}`, ToastAndroid.CENTER, ToastAndroid.BOTTOM)
     }
 }

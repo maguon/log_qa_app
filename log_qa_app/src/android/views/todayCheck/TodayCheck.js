@@ -61,7 +61,7 @@ const TodayCheck = props => {
         } = props
         console.log(todayCheckList)
         return (
-            <Container>
+            <Container style={globalStyles.marginTop}>
                 <FlatList
                     refreshControl={<RefreshControl
                         refreshing={getTodayCheckList.isResultStatus == 1}

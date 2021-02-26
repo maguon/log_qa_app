@@ -13,7 +13,7 @@ import moment from 'moment'
 const ListHeader = () => {
     return (
         <View style={styles.header}>
-            <Icon name='ios-paper-outline' style={[styles.headerIcon, globalStyles.styleColor]} />
+            <Icon name='ios-newspaper-outline' style={[styles.headerIcon, globalStyles.styleColor]} />
             <Text style={[globalStyles.midText, globalStyles.styleColor, styles.headerText, {}]}>操作记录</Text>
         </View>
     )

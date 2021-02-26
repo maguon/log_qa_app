@@ -18,16 +18,15 @@ import * as carInfoRecordAction from '../../components/carInfo/carInfoRecord/Car
 import * as searchCarAction from './SearchCarAction'
 
 const renderItem = props => {
-    const { item: { vin, id }, index, getCarInfoRecordWaiting, getCarDetailWaiting, getCarDetail, getCarInfoRecord, name } = props
+    const { item: { vin, id }, index, getCarInfoRecordWaiting, getCarDetailWaiting, getCarDetail, getCarInfoRecord, parent } = props
     return (
         <TouchableOpacity
             key={index}
             style={styles.itemContainer}
             onPress={() => {
                 getCarInfoRecordWaiting()
-                getCarDetailWaiting()
-               
-                routerDirection.carInfo(name)
+                getCarDetailWaiting()              
+                routerDirection.carInfo(parent)()
                 InteractionManager.runAfterInteractions(() => {
                     getCarDetail({ car_id: id })
                     getCarInfoRecord({ car_id: id, vin })
@@ -91,7 +90,7 @@ const SearchCar = props => {
         getCarInfoRecordWaiting,
         getCarDetailWaiting,
         getCarListMore,
-        name } = props
+        parent } = props
     // console.log('getCarList',getCarList)
     // console.log('searchCarValues',searchCarValues)
     return (
@@ -108,7 +107,7 @@ const SearchCar = props => {
             data={(searchCarValues && searchCarValues.vinCode.length > 5) ? carList : []}
             ListFooterComponent={searchCarReducer.getCarListMore.isResultStatus == 1 ? ListFooterComponent : undefined}
             ListEmptyComponent={ListEmptyComponent}
-            renderItem={({ item, index }) => renderItem({ name, item, index, getCarDetail, getCarInfoRecord, getCarInfoRecordWaiting, getCarDetailWaiting })} />
+            renderItem={({ item, index }) => renderItem({ parent, item, index, getCarDetail, getCarInfoRecord, getCarInfoRecordWaiting, getCarDetailWaiting })} />
     </Content>
     )
 }
