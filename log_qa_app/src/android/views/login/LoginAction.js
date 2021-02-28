@@ -172,6 +172,7 @@ export const cleanLogin = () => async (dispatch, getState) => {
     const { loginReducer: { data: { user: { mobile } } } } = getState()
     await  setItemObject( localStorageKey.USER,mobile)
     dispatch({ type: loginActionTypes.Set_UserInfo, payload: { user: { mobile } } })
+    Actions.initialization()
 }
 
 
