@@ -59,10 +59,10 @@ export const getCommunicationSetting = () => async (dispatch) => {
             })
             dispatch(validateVersion())            
         } else {
-           Actions.loginBlock()
+           Actions.replace('loginBlock')
         }
     } catch (err) {
-        Actions.loginBlock()
+        Actions.replace('loginBlock')
         console.log('err', err)
     }
 }
@@ -171,7 +171,7 @@ export const loadLocalStorage = () => async (dispatch) => {
                 dispatch({ type: loginActionTypes.Set_UserInfo, payload: { user: {} } })
             }
             dispatch({ type: initializationActionTypes.Load_LocalStorage_Failed, payload: { step: currentStep } })
-            Actions.loginBlock()
+            Actions.replace('loginBlock')
         }
     } catch (err) {
         // console.log(err)
@@ -182,7 +182,7 @@ export const loadLocalStorage = () => async (dispatch) => {
             removeItem(localStorageKey .USER)
             dispatch({ type: initializationActionTypes.Load_LocalStorage_Error, payload: { errorMsg: err.message, step: currentStep } })
         }
-        Actions.loginBlock()
+        Actions.replace('loginBlock')
     }
 
 }
@@ -195,7 +195,7 @@ export const validateToken = (tryCount = 1, param) => async (dispatch, getState)
     try {
         const { communicationSettingReducer: { data: { base_host } } } = getState()
         const url = `${base_host}/user/${param.requiredParam.userId}/token/${param.requiredParam.token}`
-        // console.log('url', url)
+        console.log('url', url)
         const res = await httpRequest.get(url)
         if (res.success) {
             const userDeviceUrl = `${base_host}/user/${param.requiredParam.userId}/userDevice`
@@ -227,9 +227,10 @@ export const validateToken = (tryCount = 1, param) => async (dispatch, getState)
                 requestHeaders.set('user-name', mobile)
                 dispatch({ type: loginActionTypes.Set_UserInfo, payload: { user } })
                 dispatch({ type: initializationActionTypes.validate_token_Success, payload: { step: currentStep } })
-                Actions.main()
+                // Actions.main()
+                Actions.replace('main')
             } else {
-                console.log('localStorageRes5555', localStorageRes)
+                // console.log('localStorageRes5555', localStorageRes)
                 ToastAndroid.showWithGravity(`登陆失败：无法获取用户信息！`, ToastAndroid.CENTER, ToastAndroid.BOTTOM)
                 dispatch({ type: initializationActionTypes.validate_token_Failed, payload: { failedMsg: '无法获取用户信息！' } })
             }
@@ -237,7 +238,7 @@ export const validateToken = (tryCount = 1, param) => async (dispatch, getState)
         else {
             //判断请求是否成功，如果失败，跳转到登录页
             dispatch({ type: initializationActionTypes.validate_token_Failed, payload: { step: currentStep } })
-            Actions.loginBlock()
+            Actions.replace('loginBlock')
         }
     } catch (err) {
         if (err.message == 'Network request failed') {
@@ -246,11 +247,11 @@ export const validateToken = (tryCount = 1, param) => async (dispatch, getState)
                 await sleep(1000)
                 dispatch(initApp(currentStep, tryCount + 1, param))
             } else {
-                dispatch({ type: initializationActionTypesvalidate_token_NetWorkError, payload: { param, step: currentStep } })
+                dispatch({ type: initializationActionTypes.validate_token_NetWorkError, payload: { param, step: currentStep } })
             }
         } else {
             dispatch({ type: initializationActionTypes.validate_token_Error, payload: { step: currentStep } })
-            Actions.loginBlock()
+            Actions.replace('loginBlock')
         }
     }
 }

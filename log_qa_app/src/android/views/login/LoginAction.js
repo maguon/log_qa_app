@@ -49,7 +49,7 @@ export const login = () => async (dispatch, getState) => {
                     await setItemObject(localStorageKey.USER,user)
                     await dispatch(communicationSettingActions.saveCommunicationSetting({ url: server }))
                     await dispatch({ type: loginActionTypes.login_success, payload: { user } })
-                    Actions.main()
+                    Actions.replace('main')
                 } else {
                     ToastAndroid.show(`登陆失败：无法获取用户信息！`, 10)
                     dispatch({ type: loginActionTypes.login_failed, payload: { failedMsg: '无法获取用户信息！' } })
@@ -83,12 +83,9 @@ export const validateVersion = () => async (dispatch, getState) => {
     const currentStep = 1
     try {
         // console.log(getState())
-        let { mobile, password, server } = getFormValues('loginForm')(getState())
+        let { mobile,server } = getFormValues('loginForm')(getState())
         server = `${server}`.replace(/\s*/g, "")
         mobile = `${mobile}`.replace(/\s*/g, "")
-
-        // console.log('server', server)
-        // console.log('mobile', mobile)
 
         const base_host = `http://api.${server}/api`
         // const { communicationSettingReducer: { data: { base_host } } } = getState()
@@ -172,7 +169,8 @@ export const cleanLogin = () => async (dispatch, getState) => {
     const { loginReducer: { data: { user: { mobile } } } } = getState()
     await  setItemObject( localStorageKey.USER,mobile)
     dispatch({ type: loginActionTypes.Set_UserInfo, payload: { user: { mobile } } })
-    Actions.initialization()
+    // Actions.initialization()
+    Actions.replace('initialization')
 }
 
 

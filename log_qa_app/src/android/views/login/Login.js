@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     },
     backgroundImage: {
         width: window.width,
-        height: window.width / 9 * 16
+        height: window.height
     },
     item: {
         backgroundColor: 'rgba(255,255,255,0.4)',
