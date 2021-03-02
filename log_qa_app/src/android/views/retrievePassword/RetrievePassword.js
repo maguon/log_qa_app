@@ -43,8 +43,8 @@ const RetrievePassword = props => {
             <View>
                 <SendSMS />
                 <Field name='vCode' component={TextBox} title='验证码：' icon='ios-key' />
-                <Field name='firstPassword' component={TextBox} title='新密码：' icon='ios-lock' />
-                <Field name='secondPassword' component={TextBox} title='确认密码：' icon='ios-lock' />
+                <Field name='firstPassword' component={TextBox} title='新密码：' icon='ios-lock-closed-outline' />
+                <Field name='secondPassword' component={TextBox} title='确认密码：' icon='ios-lock-closed-outline' />
             </View>
             <View>
                 <Button
