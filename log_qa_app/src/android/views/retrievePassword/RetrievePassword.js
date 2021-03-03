@@ -39,7 +39,7 @@ const TextBox = props => {
 const RetrievePassword = props => {
     const { handleSubmit } = props
     return (
-        <Container style={styles.container}>
+        <Container style={[styles.container,globalStyles.marginTop]}>
             <View>
                 <SendSMS />
                 <Field name='vCode' component={TextBox} title='验证码：' icon='ios-key' />
