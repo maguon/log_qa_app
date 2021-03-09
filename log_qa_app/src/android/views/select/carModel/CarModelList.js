@@ -41,7 +41,7 @@ const CarModelList = props => {
     }
     else {
         return (
-            <Container>
+            <Container style={globalStyles.marginTop}>
                 <FlatList
                     data={carModelList}
                     keyExtractor={(item, index) => `${index}`}

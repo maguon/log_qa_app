@@ -122,12 +122,12 @@ export default class App extends Component {
                             }
                         }}
                     > */}
-                        <Stack key="loginBlock" hideNavBar hideTabBar>
+                        <Scene key="loginBlock" hideNavBar hideTabBar>
                             <Scene key="login" initial={true} component={Login} />
                             <Scene key="retrievePassword" title='找回密码' component={RetrievePassword} hideTabBar hideNavBar={false} LeftButton={LeftButton} navBar={NavBar} />
                             <Scene key="qrCodeScreen" title='扫一扫' component={QRCodeScreen} hideNavBar={false} hideTabBar navBar={NavBar} />
-                        </Stack>
-                        <Stack
+                        </Scene>
+                        <Scene
                             key="main"
                             tabs={true}
                             tabBarStyle={styles.tabBarStyle}   
@@ -243,7 +243,7 @@ export default class App extends Component {
                                 <Scene key="personalCenter" LeftButton={LeftButton} component={PersonalCenter} title='个人中心'
                                     hideTabBar hideNavBar={false} navBar={NavBar} />
                             </Scene>
-                        </Stack>
+                        </Scene>
                 </Scene>
                 </Lightbox>
                 </Modal>

@@ -13,7 +13,7 @@ import { RNCamera } from 'react-native-camera'
 import { Icon } from 'native-base'
 import moment from 'moment'
 import globalStyles from '../GlobalStyles'
-import { ProcessingManager } from 'react-native-video-processing'
+// import { ProcessingManager } from '@snooper/react-native-video-processing'
 
 
 export default class CameraComponent extends Component {
@@ -46,20 +46,22 @@ export default class CameraComponent extends Component {
     //压缩视频
     compressVideo() {
         this.setState({ isCompressing: true })
-        const options = {
-            width: 270,
-            height: 480,
-            bitrateMultiplier: 12,
-            minimumBitrate: 300000,
-            removeAudio: false
-        };
+        // const options = {
+        //     width: 270,
+        //     height: 480,
+        //     bitrateMultiplier: 12,
+        //     minimumBitrate: 300000,
+        //     removeAudio: false
+        // };
+        this.props.uploadVideo({source:this.state.videoPatch})
+        this.setState({ isCompressing: false })
         //  console.log('this.props',this.props)
-        ProcessingManager.compress(this.state.videoPatch, options) // like VideoPlayer compress options
-            .then((data) => {
-                // console.log('data: ', data);
-                this.props.uploadVideo(data)
-                this.setState({ isCompressing: false })
-            })
+        // ProcessingManager.compress(this.state.videoPatch, options) // like VideoPlayer compress options
+        //     .then((data) => {
+        //         // console.log('data: ', data);
+        //         this.props.uploadVideo(data)
+        //         this.setState({ isCompressing: false })
+        //     })
     }
 
     //开始录像
@@ -75,13 +77,13 @@ export default class CameraComponent extends Component {
                 clearInterval(interval)
                 this.stopRecording()
             }
-        }, 2000)
+        }, 1000)
     }
 
 
     takePicture = async () => {
         try {
-          const data = await this.camera.recordAsync({ quality: RNCamera.Constants.VideoQuality['480p'] })
+          const data = await this.camera.recordAsync({ quality: RNCamera.Constants.VideoQuality['480p'],maxFileSize:(10*1024*1024)})
           const imgData = await this.camera.takePictureAsync();
           console.log('data: ', data);
           this.setState({ isRecordingSuccess: true, videoPatch: data.uri,imagePath:imgData.uri})

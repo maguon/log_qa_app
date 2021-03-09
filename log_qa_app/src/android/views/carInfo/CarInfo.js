@@ -14,8 +14,8 @@ import * as carInfoAction from './CarInfoAction'
 import * as routerDirection from '../../../util/RouterDirection'
 
 const CarInfo = props => {
-    const {  carInfoReducer:{data:{disabled}},carDetailReducer: {getCarDetail, data: {carDetail: {id, vin, make_id}}}, carInfoRecordReducer: {getCarInfoRecord}, qualityAssurance, carSort, routeName} = props
-// console.log(props)
+    const {  carInfoReducer:{data:{disabled}},carDetailReducer: {getCarDetail, data: {carDetail: {id, vin, make_id}}}, carInfoRecordReducer: {getCarInfoRecord}, qualityAssurance, carSort, parent} = props
+// console.log(parent)
         if (getCarDetail.isResultStatus == 1 || getCarInfoRecord.isResultStatus == 1) {
         return (
             <Container>
@@ -28,7 +28,7 @@ const CarInfo = props => {
                 <CarDetail/>
 
                 <View style={styles.buttonContainer}>
-                    <Button disabled={disabled} full   onPress={() => routerDirection.applyDamage(routeName)({initParam: {car_Id: id, make_id}})}
+                    <Button disabled={disabled} full   onPress={() => routerDirection.applyDamage(parent)({initParam: {car_Id: id, make_id}})}
                             style={[disabled?styles.applyButtonTwo:styles.applyButton, styles.button]}>
                         <Text style={styles.buttonTitle}>质损申报</Text>
                     </Button>

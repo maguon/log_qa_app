@@ -37,12 +37,14 @@ export const login = () => async (dispatch, getState) => {
                 const getUserInfoUrl = `${base_host}/user${ObjectToUrl({ userId: res.result.userId })}`
                 const getUserInfoRes = await httpRequest.get(getUserInfoUrl)
                 if (getUserInfoRes.success) {
+                    
                     // console.log('getUserInfoRes', getUserInfoRes)
                     const { uid, mobile, real_name, type, gender, avatar_image, status } = getUserInfoRes.result[0]
                     const user = {
                         uid, mobile, real_name, type, gender, avatar_image, status,
                         token: res.result.accessToken,
                     }
+                 
                     requestHeaders.set('auth-token', res.result.accessToken)
                     requestHeaders.set('user-type', type)
                     requestHeaders.set('user-name', mobile)
@@ -86,7 +88,6 @@ export const validateVersion = () => async (dispatch, getState) => {
         let { mobile,server } = getFormValues('loginForm')(getState())
         server = `${server}`.replace(/\s*/g, "")
         mobile = `${mobile}`.replace(/\s*/g, "")
-
         const base_host = `http://api.${server}/api`
         // const { communicationSettingReducer: { data: { base_host } } } = getState()
         const url = `${base_host}/app${ObjectToUrl({ app: android_app.type, type: android_app.android })}`

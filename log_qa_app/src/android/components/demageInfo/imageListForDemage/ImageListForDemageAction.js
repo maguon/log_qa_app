@@ -100,7 +100,7 @@ export const uploadVideoForDamage = param => async (dispatch, getState) => {
         console.log('param',param)
         console.log('getState()',getState())
         const uploadVideoUrl = `${file_host}/user/${uid}/video${ObjectToUrl({ videoType: 1, userType: type })}`
-        console.log('uploadVideoUrl',uploadVideoUrl)
+        console.log('param.source',param.source)
 
         const uploadVideoRes = await httpRequest.postFile(uploadVideoUrl, {
             key: 'file',

@@ -98,6 +98,7 @@ export const getImageForCreateCarWaiting = () => (dispatch) => {
 }
 
 export const uploadVideoForApplyDamage = param => async (dispatch, getState) => {
+    console.log(param)
     try {
         const { loginReducer: { data: { user: { uid, type, real_name } } },
             applyDamageSubmitReducer: { data: { damageId } },

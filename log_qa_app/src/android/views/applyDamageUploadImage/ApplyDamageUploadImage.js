@@ -25,13 +25,13 @@ const containerWidth = window.width / 2
 const containerHeight = containerWidth / 16 * 9
 
 const renderItem = props => {
-    const { item, index, file_host, uploadImageForApplyDamageWaiting, videoUrl, routeName,
+    const { item, index, file_host, uploadImageForApplyDamageWaiting, videoUrl, parent,
         uploadImageForApplyDamage, setIndexForUploadImageForApplyDamage, uploadVideoForApplyDamage, uploadVideoForApplyDamageWaiting } = props
     if (item == 'isCameraButton') {
-        return renderItemCameraButton({ index, routeName, uploadImageForApplyDamageWaiting, uploadImageForApplyDamage, uploadVideoForApplyDamage, uploadVideoForApplyDamageWaiting })
+        return renderItemCameraButton({ index, parent, uploadImageForApplyDamageWaiting, uploadImageForApplyDamage, uploadVideoForApplyDamage, uploadVideoForApplyDamageWaiting })
     } else if (item == 'isVideo') {
 
-        return renderVideo({ videoUrl, routeName, uploadVideoForApplyDamage })
+        return renderVideo({ videoUrl, parent, uploadVideoForApplyDamage })
     } else {
         let imageIndex = index - 1
         if (videoUrl) {
@@ -42,7 +42,7 @@ const renderItem = props => {
                 style={styles.itemContainer}
                 onPress={() => {
                     setIndexForUploadImageForApplyDamage({ index: imageIndex })
-                    routerDirection.showImageForApplyDamage(routeName)()
+                    routerDirection.showImageForApplyDamage(parent)()
                 }} >
                 <ImageItem imageUrl={`${file_host}/image/${item}`} />
             </TouchableOpacity>
@@ -51,13 +51,13 @@ const renderItem = props => {
 }
 
 const renderItemCameraButton = props => {
-    const { index, routeName, uploadImageForApplyDamageWaiting, uploadImageForApplyDamage,
+    const { index, parent, uploadImageForApplyDamageWaiting, uploadImageForApplyDamage,
         uploadVideoForApplyDamage, uploadVideoForApplyDamageWaiting } = props
     // console.log('uploadVideoForApplyDamageWaiting', uploadVideoForApplyDamageWaiting)
     return (
         <View key={index} style={styles.itemCameraButton}>
             <CameraButton
-                routeName={routeName}
+                parent={parent}
                 getImage={param => uploadImageForApplyDamage({ cameraReses: param })}
                 getVideo={uploadVideoForApplyDamage}
                 _cameraStart={uploadImageForApplyDamageWaiting}
@@ -68,11 +68,11 @@ const renderItemCameraButton = props => {
 }
 
 const renderVideo = props => {
-    const { videoUrl, routeName, uploadVideoForApplyDamage } = props
+    const { videoUrl, parent, uploadVideoForApplyDamage } = props
     if (videoUrl) {
         return (
             <TouchableOpacity style={[styles.itemCameraButton]} onPress={() => {
-                routerDirection.showVideoForApplyDamage(routeName)()
+                routerDirection.showVideoForApplyDamage(parent)()
                 // Actions.showVideoForDamage({ videoUrl: `${file_host}/file/${videoUrl}/video.mp4` })
             }}>
                 <FontAwesomeIcon name='video-camera' style={{ fontSize: 50, color: styleColor }} />
@@ -83,13 +83,13 @@ const renderVideo = props => {
 }
 
 const renderListEmpty = props => {
-    const { routeName, uploadImageForApplyDamageWaiting, uploadImageForApplyDamage, uploadVideoForApplyDamage, uploadVideoForApplyDamageWaiting } = props
+    const { parent, uploadImageForApplyDamageWaiting, uploadImageForApplyDamage, uploadVideoForApplyDamage, uploadVideoForApplyDamageWaiting } = props
     // console.log('uploadVideoForApplyDamageWaiting',uploadVideoForApplyDamageWaiting)
     return (
         <View>
             <View style={styles.cameraButtonContainer}>
                 <CameraButton
-                    routeName={routeName}
+                    parent={parent}
                     getImage={param => {
                         uploadImageForApplyDamage({ cameraReses: param })
                     }}
@@ -108,7 +108,7 @@ const renderListEmpty = props => {
 }
 
 const ApplyDamageUploadImage = props => {
-    const { routeName, uploadImageForApplyDamageWaiting, uploadImageForApplyDamage, setIndexForUploadImageForApplyDamage, uploadVideoForApplyDamage, uploadVideoForApplyDamageWaiting,
+    const { parent, uploadImageForApplyDamageWaiting, uploadImageForApplyDamage, setIndexForUploadImageForApplyDamage, uploadVideoForApplyDamage, uploadVideoForApplyDamageWaiting,
         communicationSettingReducer: { data: { file_host } },
         applyDamageUploadImageReducer: { data: { imageList, videoUrl }, uploadImageForApplyDamage: { isResultStatus }, getImageForCreateCar }, applyDamageUploadImageReducer } = props
     
@@ -138,9 +138,9 @@ const ApplyDamageUploadImage = props => {
                     keyExtractor={(item, index) => `${index}`}
                     data={imageList.length > 0 || videoUrl ? dataList : []}
                     numColumns={2}
-                    ListEmptyComponent={() => renderListEmpty({ routeName, uploadImageForApplyDamageWaiting, uploadImageForApplyDamage, uploadVideoForApplyDamage, uploadVideoForApplyDamageWaiting })}
+                    ListEmptyComponent={() => renderListEmpty({ parent, uploadImageForApplyDamageWaiting, uploadImageForApplyDamage, uploadVideoForApplyDamage, uploadVideoForApplyDamageWaiting })}
                     renderItem={({ item, index }) => renderItem({
-                        routeName, item, file_host, index, videoUrl, imageList, uploadImageForApplyDamageWaiting, uploadVideoForApplyDamage,
+                        parent, item, file_host, index, videoUrl, imageList, uploadImageForApplyDamageWaiting, uploadVideoForApplyDamage,
                         uploadVideoForApplyDamageWaiting, uploadImageForApplyDamage, setIndexForUploadImageForApplyDamage
                     })} />
                 <Modal

@@ -4,13 +4,6 @@ export const searchCar = (parent) => {
     if (parent === 'settingBlock') return Actions.searchCarAtSettingBlock
     if (parent === 'homeBlock') return Actions.searchCarAtHomeBlock
 }
-export const singlePhotoView = (parent) => {
-    if (parent === 'settingBlock') return Actions.singlePhotoViewAtSettingBlock
-    if (parent === 'homeBlock') return Actions.singlePhotoViewAtHomeBlock
-}
-
-
-
 
 export const carInfo = (parent) => {
     if (parent === 'settingBlock') return Actions.carInfoAtSettingBlock
@@ -18,40 +11,44 @@ export const carInfo = (parent) => {
 }
 
 export const selectDriver = (parent) => {
-    if (parent === 'applyDamageAtSettingBlock') return Actions.selectDriverAtSettingBlock
-    if (parent === 'applyDamageAtHomeBlock') return Actions.selectDriverAtHomeBlock
+    if (parent === 'settingBlock') return Actions.selectDriverAtSettingBlock
+    if (parent === 'homeBlock') return Actions.selectDriverAtHomeBlock
 }
 
+export const singlePhotoView = (parent) => {
+    if (parent === 'settingBlock') return Actions.singlePhotoViewAtSettingBlock
+    if (parent === 'homeBlock') return Actions.singlePhotoViewAtHomeBlock
+}
 
 export const applyDamage = (parent) => {
-    if (parent === 'carInfoAtSettingBlock') return Actions.applyDamageAtSettingBlock
-    if (parent === 'carInfoAtHomeBlock') return Actions.applyDamageAtHomeBlock
+    if (parent === 'settingBlock') return Actions.applyDamageAtSettingBlock
+    if (parent === 'homeBlock') return Actions.applyDamageAtHomeBlock
 }
 
 export const applyDamageUploadImage = (parent) => {
-    if (parent === 'applyDamageAtSettingBlock') return Actions.applyDamageUploadImageAtSettingBlock
-    if (parent === 'applyDamageAtHomeBlock') return Actions.applyDamageUploadImageAtHomeBlock
+    if (parent === 'settingBlock') return Actions.applyDamageUploadImageAtSettingBlock
+    if (parent === 'homeBlock') return Actions.applyDamageUploadImageAtHomeBlock
 }
 
 
-export const pictureRecording = (routeName) => {
-    if (routeName === 'applyDamageUploadImageAtSettingBlock') return param => Actions.pictureRecordingAtSettingBlock(param)
-    if (routeName === 'applyDamageUploadImageAtHomeBlock') return param => Actions.pictureRecordingAtHomeBlock(param)
+export const pictureRecording = (parent) => {
+    if (parent === 'settingBlock') return param => Actions.pictureRecordingAtSettingBlock(param)
+    if (parent === 'homeBlock') return param => Actions.pictureRecordingAtHomeBlock(param)
 }
 
 
-export const showImageForApplyDamage = (routeName) => {
-    if (routeName === 'applyDamageUploadImageAtSettingBlock') return Actions.showImageForApplyDamageAtSettingBlock
-    if (routeName === 'applyDamageUploadImageAtHomeBlock') return Actions.showImageForApplyDamageAtHomeBlock
+export const showImageForApplyDamage = (parent) => {
+    if (parent === 'settingBlock') return Actions.showImageForApplyDamageAtSettingBlock
+    if (parent === 'homeBlock') return Actions.showImageForApplyDamageAtHomeBlock
 }
 
-export const showVideoForApplyDamage = (routeName) => {
-    if (routeName === 'applyDamageUploadImageAtSettingBlock') return Actions.showVideoForApplyDamageAtSettingBlock
-    if (routeName === 'applyDamageUploadImageAtHomeBlock') return Actions.showVideoForApplyDamageAtHomeBlock
+export const showVideoForApplyDamage = (parent) => {
+    if (parent === 'settingBlock') return Actions.showVideoForApplyDamageAtSettingBlock
+    if (parent === 'homeBlock') return Actions.showVideoForApplyDamageAtHomeBlock
 }
 
 
-export const carModelList = (routeName) => {
-    if (routeName === 'applyDamageAtSettingBlock') return Actions.carModelListAtSettingBlock
-    if (routeName === 'applyDamageAtHomeBlock') return Actions.carModelListAtHomeBlock
+export const carModelList = (parent) => {
+    if (parent === 'settingBlock') return Actions.carModelListAtSettingBlock
+    if (parent === 'homeBlock') return Actions.carModelListAtHomeBlock
 }

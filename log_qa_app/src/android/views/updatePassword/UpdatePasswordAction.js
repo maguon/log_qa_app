@@ -12,6 +12,8 @@ export const updatePassword = () => async (dispatch, getState) => {
     if (newPassword == confirmPassword) {
         try {
             const url = `${base_host}/user/${uid}/password`
+
+            console.log("oldPassword",oldPassword)
             const res = await httpRequest.put(url, {
                 originPassword: oldPassword,
                 newPassword
@@ -20,11 +22,11 @@ export const updatePassword = () => async (dispatch, getState) => {
                 ToastAndroid.showWithGravity(`修改成功！`, ToastAndroid.CENTER, ToastAndroid.BOTTOM)
                 dispatch({ type: updatePasswordActionTypes.change_Password_success, payload: {} })
             } else {
-                ToastAndroid.showWithGravity(`修改失败！${res.msg}`, ToastAndroid.CENTER, ToastAndroid.BOTTOM)
+                ToastAndroid.showWithGravity(`修改失败1！${res.msg}`, ToastAndroid.CENTER, ToastAndroid.BOTTOM)
                 dispatch({ type: updatePasswordActionTypes.change_Password_failed, payload: { failedMsg: res.msg } })
             }
         } catch (err) {
-            ToastAndroid.showWithGravity(`修改失败！${err}`, ToastAndroid.CENTER, ToastAndroid.BOTTOM)
+            ToastAndroid.showWithGravity(`修改失败2！${err}`, ToastAndroid.CENTER, ToastAndroid.BOTTOM)
             dispatch({ type: updatePasswordActionTypes.change_Password_error, payload: { errorMsg: err } })
         }
     } else {

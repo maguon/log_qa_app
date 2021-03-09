@@ -59,8 +59,8 @@ const SelectDriver = props => {
 
 
 const ApplyDamage = props => {
-    const { getSelectDriverList, getSelectDriverListWaiting, getCarModelList, getCarModelListWaiting, routeName, initParam: {make_id} } = props
-        // console.log('props',props)
+    const { getSelectDriverList, getSelectDriverListWaiting, getCarModelList, getCarModelListWaiting, parent, initParam: {make_id} } = props
+        //  console.log('props',props)
     return (
         <Container>
             <Content style={globalStyles.marginTop}>
@@ -70,7 +70,7 @@ const ApplyDamage = props => {
                     component={Select}
                     onPress={({ onChange }) => {
                         getCarModelListWaiting()
-                        routerDirection.carModelList(routeName)({
+                        routerDirection.carModelList(parent)({
                             onSelect: (param) => {
                                 const { id, model_name } = param
                                 onChange({ id, value: model_name, item: param })
@@ -87,7 +87,7 @@ const ApplyDamage = props => {
                     component={SelectDriver}
                     getSelectDriverList={getSelectDriverList}
                     getSelectDriverListWaiting={getSelectDriverListWaiting}
-                    parent={routeName} />
+                    parent={parent} />
 
             </Content>
         </Container >
@@ -157,8 +157,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
         dispatch(carModelListActions.getCarModelListWaiting())
     },
     onSubmit: () => {
-        const { routeName } = ownProps
-        dispatch(applyDamageSubmitAction.createDamage(routeName))
+        const { parent } = ownProps
+        dispatch(applyDamageSubmitAction.createDamage(parent))
     }
 })
 

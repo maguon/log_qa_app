@@ -8,11 +8,11 @@ import {
 } from 'react-native'
 import { Button, Icon } from 'native-base'
 import ImageResizer from 'react-native-image-resizer'
-import ImagePicker from 'react-native-image-picker'
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import ImageCropPicker from 'react-native-image-crop-picker'
 import globalStyles, { styleColor } from '../../GlobalStyles'
 import { ToastAndroid } from 'react-native'
-// import { ProcessingManager } from 'react-native-video-processing'
+// import { ProcessingManager } from '@snooper/react-native-video-processing'
 import * as routerDirection from '../../../util/RouterDirection'
 
 /***********************  临时解决方案，待改善：1，执行状态是否成功，成功数量。2，执行进度*/
@@ -98,7 +98,7 @@ export default class CameraVideoButton extends Component {
     }
 
     launchCamera() {//打开照相机进行拍照
-        ImagePicker.launchCamera(photoOptions, (response) => {
+        launchCamera(photoOptions, (response) => {
             console.log("response",response)
             if (response.didCancel) {
                 //console.log('User cancelled video picker')
@@ -204,7 +204,8 @@ export default class CameraVideoButton extends Component {
     // }
 
     render() {
-        const { routeName } = this.props
+        const { parent } = this.props
+        console.log("this.props",this.props)
         return (
             <View>
                 <Button
@@ -244,7 +245,7 @@ export default class CameraVideoButton extends Component {
                             </TouchableOpacity> */}
                             <TouchableOpacity
                                 onPress={() => this.setState({ operationModalVisible: false }, () => {
-                                    routerDirection.pictureRecording(routeName)({ uploadVideo: this.props.getVideo })
+                                    routerDirection.pictureRecording(parent)({ uploadVideo: this.props.getVideo })
                                 })}>
                                 <View>
                                     <Text style={[styles.modalListItemTitle, globalStyles.midText]}>摄像</Text>

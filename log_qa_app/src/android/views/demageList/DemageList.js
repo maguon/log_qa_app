@@ -49,7 +49,7 @@ const renderListItem = props => {
             <View style={styles.listItemTopContainer}>
                 <Text style={globalStyles.smallText}>编号：{id ? `${id}` : ''}</Text>
                 <View style={styles.itemGroup}>
-                    <Icon name='ios-clock-outline' style={styles.clockIcon} />
+                    <Icon name='time-outline' style={styles.clockIcon} />
                     <Text style={[globalStyles.smallText, styles.text]}>{created_on ? `${moment(created_on).format('YYYY-MM-DD HH:mm')}` : ''}</Text>
                 </View>
                 <Text style={globalStyles.smallText}>
