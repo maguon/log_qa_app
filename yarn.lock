@@ -2494,8 +2494,9 @@ home-or-tmp@^2.0.0:
     os-tmpdir "^1.0.1"
 
 hosted-git-info@^2.1.4:
-  version "2.5.0"
-  resolved "http://registry.npm.taobao.org/hosted-git-info/download/hosted-git-info-2.5.0.tgz#6d60e34b3abbc8313062c3b798ef8d901a07af3c"
+  version "2.8.9"
+  resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-2.8.9.tgz#dffc0bf9a21c02209090f2aa69429e1414daf3f9"
+  integrity sha512-mxIDAb9Lsm6DoOJ7xH+5+X4y1LU/4Hi50L9C5sIswK3JzULS4bwk1FvjdBgvYR4bzT4tuUQiC15FE2f5HbLvYw==
 
 html-encoding-sniffer@^1.0.1:
   version "1.0.2"
@@ -4172,6 +4173,11 @@ react-native-camera@1.0.3:
   dependencies:
     lodash "^4.17.4"
     prop-types "^15.5.10"
+
+react-native-device-info@0.25.1:
+  version "0.25.1"
+  resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-0.25.1.tgz#bde3be9fe0e06d0c07ab5837e4fc1af90f66696b"
+  integrity sha512-KW4Mf0CVEy10sbWsrnP7dMiB+FhFa46r11+JPdXWu1hHoSy8B/DR5Cb29kHHZSCPftHPzEhfMDflRe4IOgHrVw==
 
 "react-native-drawer@https://github.com/GeekyAnts/react-native-drawer":
   version "2.3.0"
