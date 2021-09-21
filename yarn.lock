@@ -4173,6 +4173,11 @@ react-native-camera@1.0.3:
     lodash "^4.17.4"
     prop-types "^15.5.10"
 
+react-native-device-info@0.25.1:
+  version "0.25.1"
+  resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-0.25.1.tgz#bde3be9fe0e06d0c07ab5837e4fc1af90f66696b"
+  integrity sha512-KW4Mf0CVEy10sbWsrnP7dMiB+FhFa46r11+JPdXWu1hHoSy8B/DR5Cb29kHHZSCPftHPzEhfMDflRe4IOgHrVw==
+
 "react-native-drawer@https://github.com/GeekyAnts/react-native-drawer":
   version "2.3.0"
   resolved "https://github.com/GeekyAnts/react-native-drawer#8d9078516d177c9cb02d2579a6860706d2370d25"
@@ -5188,8 +5193,9 @@ tmp@^0.0.33:
     os-tmpdir "~1.0.2"
 
 tmpl@1.0.x:
-  version "1.0.4"
-  resolved "http://registry.npm.taobao.org/tmpl/download/tmpl-1.0.4.tgz#23640dd7b42d00433911140820e5cf440e521dd1"
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/tmpl/-/tmpl-1.0.5.tgz#8683e0b902bb9c20c4f726e3c0b69f36518c07cc"
+  integrity sha512-3f0uOEAQwIqGuWW2MVzYg8fV/QNnc/IpuJNG837rLuczAaLVHslWHZQj4IGiEl5Hs3kkbhwL9Ab7Hrsmuj+Smw==
 
 to-fast-properties@^1.0.3:
   version "1.0.3"
