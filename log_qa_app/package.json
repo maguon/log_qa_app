@@ -13,7 +13,7 @@
     "@arlenwang/react-native-photo-view": "^1.5.3",
     "@gergof/react-native-orientation": "^3.2.2",
     "@react-native-async-storage/async-storage": "^1.13.4",
-    "moment": "^2.29.1",
+    "moment": "^2.29.4",
     "native-base": "^2.15.2",
     "react": "16.13.1",
     "react-native": "0.63.4",
