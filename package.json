@@ -10,7 +10,7 @@
     "moment": "2.18.1",
     "native-base": "2.3.1",
     "react": "16.0.0-alpha.12",
-    "react-native": "0.48.3",
+    "react-native": "0.70.6",
     "react-native-barcodescanner": "3.1.1",
     "react-native-camera": "1.0.3",
     "react-native-image-crop-picker": "0.16.1",
@@ -36,7 +36,7 @@
   "devDependencies": {
     "babel-jest": "22.0.3",
     "babel-preset-react-native": "4.0.0",
-    "jest": "22.0.3",
+    "jest": "29.3.1",
     "react-test-renderer": "16.0.0-alpha.12"
   },
   "jest": {
